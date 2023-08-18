@@ -8,8 +8,6 @@ dns:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-    
-#机场流量信息
 subscribe-url: ""
 
 proxy-providers:
@@ -22,6 +20,7 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
+      
 proxy-groups:
   - name: Choice
     type: select
@@ -30,112 +29,95 @@ proxy-groups:
       - All
     proxies:
       - 故障转移
-
-    
   - name: BiliBili
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
-    proxies: 
-      - DIRECT 
+    proxies:
+      - DIRECT
       - Hong Kong
       - Tai Pei
-    
   - name: failover
     type: fallback
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png
-    url: 'http://www.gstatic.com/generate_204'
+    url: http://www.gstatic.com/generate_204
     interval: 300
-    use: 
-       - All
-
+    use:
+      - All
   - name: Hong Kong
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     use:
       - All
     filter: 港|🇭🇰|HK|(?i)Hong
-
   - name: Tai Wan
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
     use:
       - All
     filter: 台|🇹🇼|TW|(?i)Taiwan
-    
   - name: Japan
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
     use:
       - All
     filter: 日|🇯🇵|JP|(?i)Japan
-     
   - name: 狮城节点
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
     use:
       - All
     filter: 坡|🇸🇬|狮城|SG|(?i)Singapore
-     
   - name: Korea
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
     use:
       - All
     filter: 韩|🇰🇷|韓|KR|KOR|(?i)Korea
-    
   - name: United States
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     use:
       - All
     filter: 美|🇺🇸|US|(?i)States|American
-
   - name: Other
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png
     use:
       - All
     filter: ^((?!🇭🇰|港|HK|Hong|🇹🇼|台|TW|Tai|🇯🇵|日|JP|Japan|🇸🇬|坡|狮城|SG|Singapore|🇰🇷|韩|KR|KOR|Korea|🇺🇸|美|US|States|American).)*$
-    rule-providers:
-  # 远程规则集
-
+    
+rule-providers:
   Adblock:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml"
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml
     path: ./ruleset/AdDomain.yaml
     interval: 86400
-
   BiliBili:
-   type: http
-   behavior: classical
-   url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml"
-   path: ./ruleset/BiliBili.ymal
-   interval: 86400
-        
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml
+    path: ./ruleset/BiliBili.ymal
+    interval: 86400
   Apple:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml
     path: ./ruleset/Apple.yaml
     interval: 86400
-    
   China:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml"
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml
     path: ./ruleset/China.yaml
     interval: 86400
-
-  Lan: # 局域网
+  Lan:
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml"
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml
     path: ./ruleset/lan.yaml
     interval: 86400
-    
 rules:
-  # 分流规则引用
   - RULE-SET,Adblock,REJECT
   - RULE-SET,BiliBili,BiliBili
   - RULE-SET,Apple,DIRECT
