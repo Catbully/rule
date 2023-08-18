@@ -1,3 +1,4 @@
+#SUBSCRIBED https://raw.githubusercontent.com/Catbully/rule/main/stash.yaml
 mode: rule
 log-level: info
 dns:
@@ -8,27 +9,14 @@ dns:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-subscribe-url: ""
-
-proxy-providers:
-  All:
-    type: http
-    url: ""
-    interval: 86400
-    path: ./all.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
-      
 proxy-groups:
   - name: Choice
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     use:
-      - All
-    proxies:
-      - 故障转移
+      - 赔钱机场
+      - aca
+    proxies: null
   - name: BiliBili
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
@@ -36,56 +24,57 @@ proxy-groups:
       - DIRECT
       - Hong Kong
       - Tai Pei
-  - name: failover
-    type: fallback
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    use:
-      - All
+    include-all: null
+    use: null
   - name: Hong Kong
-    type: select
+    type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     use:
       - All
     filter: 港|🇭🇰|HK|(?i)Hong
-  - name: Tai Wan
-    type: select
+    include-all: true
+  - name: Tai Pei
+    type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
     use:
       - All
     filter: 台|🇹🇼|TW|(?i)Taiwan
+    include-all: true
   - name: Japan
-    type: select
+    type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
     use:
       - All
     filter: 日|🇯🇵|JP|(?i)Japan
-  - name: 狮城节点
-    type: select
+    include-all: true
+  - name: Singapor
+    type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
     use:
       - All
     filter: 坡|🇸🇬|狮城|SG|(?i)Singapore
+    include-all: true
   - name: Korea
-    type: select
+    type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
     use:
       - All
     filter: 韩|🇰🇷|韓|KR|KOR|(?i)Korea
+    include-all: true
   - name: United States
-    type: select
+    type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     use:
       - All
     filter: 美|🇺🇸|US|(?i)States|American
+    include-all: true
   - name: Other
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png
     use:
       - All
     filter: ^((?!🇭🇰|港|HK|Hong|🇹🇼|台|TW|Tai|🇯🇵|日|JP|Japan|🇸🇬|坡|狮城|SG|Singapore|🇰🇷|韩|KR|KOR|Korea|🇺🇸|美|US|States|American).)*$
-    
+    include-all: true
 rule-providers:
   Adblock:
     type: http
@@ -124,4 +113,4 @@ rules:
   - RULE-SET,China,DIRECT
   - RULE-SET,Lan,DIRECT
   - GEOIP,CN,DIRECT
-  - MATCH,PORXY
+  - MATCH,Choice
