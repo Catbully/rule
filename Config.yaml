@@ -1,0 +1,666 @@
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: '127.0.0.1:9090'
+dns:
+    enable: true
+    ipv6: false
+    default-nameserver: [223.5.5.5, 119.29.29.29]
+    enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: true
+    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+    fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
+    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+proxies:
+    - { name: A美国04-杭州联通, type: ss, server: a-us04.lgm88.top, port: 43172, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B美国04-广东移动, type: ss, server: b-us04.lgm88.top, port: 43172, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: E美国04-广州移动, type: ss, server: e-us04.lgm88.top, port: 43174, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A卢森堡01-杭州联通, type: ss, server: a-lsb01.lgm88.top, port: 41537, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A新加坡04-广东移动, type: ss, server: a-sgp04.lgm88.top, port: 49164, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B新加坡04-广州移动, type: ss, server: b-sgp04.lgm88.top, port: 49165, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C新加坡04-杭州联通, type: ss, server: c-sgp04.lgm88.top, port: 49165, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A美国05-广东移动, type: ss, server: a-us05.lgm88.top, port: 48316, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B美国05-杭州联通, type: ss, server: b-us05.lgm88.top, port: 48316, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: D美国05-广州移动, type: ss, server: d-us05.lgm88.top, port: 48316, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A美国06-杭州联通, type: ss, server: a-us06.lgm88.top, port: 48315, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B美国06-广东移动, type: ss, server: b-us06.lgm88.top, port: 48315, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C美国06-广州移动, type: ss, server: c-us06.lgm88.top, port: 48315, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A日本07-杭州联通, type: ss, server: a-jp07.lgm88.top, port: 42716, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B日本07-广东移动, type: ss, server: b-jp07.lgm88.top, port: 42716, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C日本07-广州移动, type: ss, server: c-jp07.lgm88.top, port: 42716, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A新加坡03-广东移动, type: ss, server: a-sgp03.lgm88.top, port: 47246, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B新加坡03-广州移动, type: ss, server: b-sgp03.lgm88.top, port: 47247, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C新加坡03-杭州联通, type: ss, server: c-sgp03.lgm88.top, port: 47247, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A日本03-杭州联通, type: ss, server: a-jp03.lgm88.top, port: 23415, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B日本03-广东移动, type: ss, server: b-jp03.lgm88.top, port: 23415, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C日本03-广州移动, type: ss, server: c-jp03.lgm88.top, port: 23475, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A香港07-广东移动, type: ss, server: a-hk07.lgm88.top, port: 41726, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B香港07-杭州联通, type: ss, server: b-hk07.lgm88.top, port: 41726, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C香港07-广州移动, type: ss, server: c-hk07.lgm88.top, port: 41726, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A瑞典01-广东移动, type: ss, server: a-rd01.lgm88.top, port: 47283, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A新加坡01-杭州联通, type: ss, server: a-sgp01.lgm88.top, port: 47362, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A菲律宾01-杭州联通, type: ss, server: a-flb01.lgm88.top, port: 25451, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A沙特阿拉伯01-杭州联通, type: ss, server: a-stalb01.lgm88.top, port: 49246, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A日本09-杭州联通, type: ss, server: a-jp09.lgm88.top, port: 47124, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: E日本09-广州移动, type: ss, server: e-jp09.lgm88.top, port: 47125, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A日本01-杭州联通, type: ss, server: a-jp01.lgm88.top, port: 36434, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B日本01-广东移动, type: ss, server: b-jp01.lgm88.top, port: 36434, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C日本01-广州移动, type: ss, server: c-jp01.lgm88.top, port: 36434, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A美国01-杭州联通, type: ss, server: a-us01.lgm88.top, port: 10661, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A台湾05-广州移动, type: ss, server: a-tw05.lgm88.top, port: 47251, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A巴拿马01-广州移动, type: ss, server: a-bnm01.lgm88.top, port: 48152, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A智利01-广州移动, type: ss, server: a-zl01.lgm88.top, port: 43621, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A爱尔兰01-广州移动, type: ss, server: a-ael01.lgm88.top, port: 47135, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B爱尔兰01-广东移动, type: ss, server: b-ael01.lgm88.top, port: 47135, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A瑞士01-广州移动, type: ss, server: a-rs01.lgm88.top, port: 46172, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A英国02-广东移动-ChatGPT, type: ss, server: a-uk02.lgm88.top, port: 42371, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B英国02-ChatGPT-广州移动, type: ss, server: b-uk02.lgm88.top, port: 42371, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C英国02-ChatGPT-杭州联通, type: ss, server: c-uk02.lgm88.top, port: 42371, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A印尼02-ChatGPT-广东移动, type: ss, server: a-yn02.lgm88.top, port: 32462, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B印尼02-ChatGPT-广州移动, type: ss, server: b-yn02.lgm88.top, port: 32462, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C印尼02-ChatGPT-杭州联通, type: ss, server: c-yn02.lgm88.top, port: 32462, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A泰国02-广东移动, type: ss, server: a-tg02.lgm88.top, port: 36714, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B泰国02-广州移动, type: ss, server: b-tg02.lgm88.top, port: 36714, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C泰国02-杭州联通, type: ss, server: c-tg02.lgm88.top, port: 36714, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A意大利01-广东移动, type: ss, server: a-ydl01.lgm88.top, port: 34910, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B意大利01-杭州联通, type: ss, server: b-ydl01.lgm88.top, port: 34910, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C意大利01-广州移动, type: ss, server: c-ydl01.lgm88.top, port: 34910, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A西班牙01-广东移动, type: ss, server: a-xby01.lgm88.top, port: 34610, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B西班牙01-广州移动, type: ss, server: b-xby01.lgm88.top, port: 34610, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: D西班牙01-杭州联通, type: ss, server: d-xby01.lgm88.top, port: 34610, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A乌克兰01-广东移动, type: ss, server: a-wkl01.lgm88.top, port: 37540, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C乌克兰01-广州移动, type: ss, server: c-wkl01.lgm88.top, port: 37540, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: D乌克兰01-杭州联通, type: ss, server: d-wkl01.lgm88.top, port: 37540, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A拉脱维亚01-广东移动, type: ss, server: a-ltwy01.lgm88.top, port: 37800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C拉脱维亚01-广州移动, type: ss, server: c-ltwy01.lgm88.top, port: 37800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: D拉脱维亚01-杭州联通, type: ss, server: d-ltwy01.lgm88.top, port: 37800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A芬兰01-广东移动, type: ss, server: a-fenlan01.lgm88.top, port: 39400, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B芬兰01-广州移动, type: ss, server: b-fenlan01.lgm88.top, port: 39401, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C芬兰01-杭州联通, type: ss, server: c-fenlan01.lgm88.top, port: 39400, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A土耳其02-广东移动, type: ss, server: a-teq02.lgm88.top, port: 34100, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B土耳其02-广州移动, type: ss, server: b-teq02.lgm88.top, port: 34101, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C土耳其02-杭州联通, type: ss, server: c-teq02.lgm88.top, port: 34100, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A波兰01-广东移动, type: ss, server: a-bolan01.lgm88.top, port: 34800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B波兰01-广州移动, type: ss, server: b-bolan01.lgm88.top, port: 34801, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C波兰01-杭州联通, type: ss, server: c-bolan01.lgm88.top, port: 34800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A美国03-广东移动-ChatGPT, type: ss, server: a-us03.lgm88.top, port: 34826, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B美国03-ChatGPT-杭州联通, type: ss, server: b-us03.lgm88.top, port: 34826, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C美国03-ChatGPT-广州移动, type: ss, server: c-us03.lgm88.top, port: 34826, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A新加坡02-广东移动, type: ss, server: a-sgp02.lgm88.top, port: 16173, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C新加坡02-广州移动, type: ss, server: c-sgp02.lgm88.top, port: 16271, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A韩国01-广东移动, type: ss, server: a-hg01.lgm88.top, port: 24741, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B韩国01-杭州联通, type: ss, server: b-hg01.lgm88.top, port: 24741, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C韩国01-广州移动, type: ss, server: c-hg01.lgm88.top, port: 24741, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A香港03-杭州联通, type: ss, server: a-hk03.lgm88.top, port: 24843, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B香港03-广东移动, type: ss, server: b-hk03.lgm88.top, port: 24843, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C香港03-广州移动, type: ss, server: c-hk03.lgm88.top, port: 24843, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A越南02-广东移动, type: ss, server: a-vn02.lgm88.top, port: 24490, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B越南02-广州移动, type: ss, server: b-vn02.lgm88.top, port: 24490, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: D越南02-杭州联通, type: ss, server: d-vn02.lgm88.top, port: 24490, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A加拿大01-广东移动, type: ss, server: a-jnd01.lgm88.top, port: 25410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B加拿大01-广州移动, type: ss, server: b-jnd01.lgm88.top, port: 25410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: D加拿大01-杭州联通, type: ss, server: d-jnd01.lgm88.top, port: 25410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A德国01-杭州联通, type: ss, server: a-dg01.lgm88.top, port: 29440, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B德国01-广东移动, type: ss, server: b-dg01.lgm88.top, port: 29440, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: D德国01-广州移动, type: ss, server: d-dg01.lgm88.top, port: 29440, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A印度01-广东移动, type: ss, server: a-yd01.lgm88.top, port: 26450, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B印度01-广州移动, type: ss, server: b-yd01.lgm88.top, port: 27441, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A澳大利亚01-杭州联通, type: ss, server: a-adly01.lgm88.top, port: 27430, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B澳大利亚01-广东移动, type: ss, server: b-adly01.lgm88.top, port: 27430, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C澳大利亚01-广州移动, type: ss, server: c-adly01.lgm88.top, port: 27432, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A台湾01-广东移动, type: ss, server: a-tw01.lgm88.top, port: 24240, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B台湾01-杭州联通, type: ss, server: b-tw01.lgm88.top, port: 24240, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C台湾01-广州移动, type: ss, server: c-tw01.lgm88.top, port: 24242, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A荷兰01-广东移动, type: ss, server: a-helan01.lgm88.top, port: 34470, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B荷兰01-杭州联通, type: ss, server: b-helan01.lgm88.top, port: 34470, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C荷兰01-广州移动, type: ss, server: c-helan01.lgm88.top, port: 34472, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A阿根廷01-广东移动, type: ss, server: a-agt01.lgm88.top, port: 37410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B阿根廷01-广州移动, type: ss, server: b-agt01.lgm88.top, port: 37410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C阿根廷01-杭州联通, type: ss, server: c-agt01.lgm88.top, port: 37410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A迪拜01-广东移动, type: ss, server: a-db01.lgm88.top, port: 37415, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B迪拜01-杭州联通, type: ss, server: b-db01.lgm88.top, port: 37415, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C迪拜01-广州移动, type: ss, server: c-db01.lgm88.top, port: 37417, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A俄罗斯01-广东移动, type: ss, server: a-els01.lgm88.top, port: 37420, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B俄罗斯01-杭州联通, type: ss, server: b-els01.lgm88.top, port: 37420, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C俄罗斯01-广州移动, type: ss, server: c-els01.lgm88.top, port: 37422, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A英国01-广东移动, type: ss, server: a-uk01.lgm88.top, port: 36425, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B英国01-杭州联通, type: ss, server: b-uk01.lgm88.top, port: 36425, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C英国01-广州移动, type: ss, server: c-uk01.lgm88.top, port: 36425, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A土耳其01-广东移动, type: ss, server: a-teq01.lgm88.top, port: 24568, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: B土耳其01-杭州联通, type: ss, server: b-teq01.lgm88.top, port: 24568, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: C土耳其01-广州移动, type: ss, server: c-teq01.lgm88.top, port: 24566, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
+    - { name: A马来西亚02-广东移动, type: trojan, server: a-mlxy02.lgm88.top, port: 24410, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: mlxy02.lgm88.top, skip-cert-verify: true }
+    - { name: B马来西亚02-杭州联通, type: trojan, server: b-mlxy02.lgm88.top, port: 24410, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: mlxy02.lgm88.top, skip-cert-verify: true }
+    - { name: C马来西亚02-广州移动-ChatGPT, type: trojan, server: c-mlxy02.lgm88.top, port: 24410, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: mlxy02.lgm88.top, skip-cert-verify: true }
+    - { name: A泰国01-广东移动, type: trojan, server: a-tg01.lgm88.top, port: 25461, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: tg01.lgm88.top, skip-cert-verify: true }
+    - { name: B泰国01-杭州联通, type: trojan, server: b-tg01.lgm88.top, port: 25461, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: tg01.lgm88.top, skip-cert-verify: true }
+    - { name: C泰国01-广州移动, type: trojan, server: c-tg01.lgm88.top, port: 25464, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: tg01.lgm88.top, skip-cert-verify: true }
+    - { name: A印尼01-广东移动, type: trojan, server: a-yn01.lgm88.top, port: 24461, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: yn01.lgm88.top, skip-cert-verify: true }
+    - { name: B印尼01-杭州联通, type: trojan, server: b-yn01.lgm88.top, port: 24461, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: yn01.lgm88.top, skip-cert-verify: true }
+    - { name: C印尼01-广州移动, type: trojan, server: c-yn01.lgm88.top, port: 24463, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: yn01.lgm88.top, skip-cert-verify: true }
+    - { name: A香港01-广东移动, type: trojan, server: a-hk01.lgm88.top, port: 11195, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: hk01.lgm88.top, skip-cert-verify: true }
+    - { name: B香港01-广州移动, type: trojan, server: b-hk01.lgm88.top, port: 24569, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: hk01.lgm88.top, skip-cert-verify: true }
+    - { name: C香港01-杭州联通, type: trojan, server: c-hk01.lgm88.top, port: 41242, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: hk01.lgm88.top, skip-cert-verify: true }
+    - { name: anyhk香港01-只能在中国大陆以外使用, type: trojan, server: hk01.lgm88.top, port: 10013, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: hk01.lgm88.top, skip-cert-verify: true }
+proxy-groups:
+    - { name: 雷公马, type: select, proxies: [自动选择, 故障转移, A美国04-杭州联通, B美国04-广东移动, E美国04-广州移动, A卢森堡01-杭州联通, A新加坡04-广东移动, B新加坡04-广州移动, C新加坡04-杭州联通, A美国05-广东移动, B美国05-杭州联通, D美国05-广州移动, A美国06-杭州联通, B美国06-广东移动, C美国06-广州移动, A日本07-杭州联通, B日本07-广东移动, C日本07-广州移动, A新加坡03-广东移动, B新加坡03-广州移动, C新加坡03-杭州联通, A日本03-杭州联通, B日本03-广东移动, C日本03-广州移动, A香港07-广东移动, B香港07-杭州联通, C香港07-广州移动, A瑞典01-广东移动, A新加坡01-杭州联通, A菲律宾01-杭州联通, A沙特阿拉伯01-杭州联通, A日本09-杭州联通, E日本09-广州移动, A日本01-杭州联通, B日本01-广东移动, C日本01-广州移动, A美国01-杭州联通, A台湾05-广州移动, A巴拿马01-广州移动, A智利01-广州移动, A爱尔兰01-广州移动, B爱尔兰01-广东移动, A瑞士01-广州移动, A英国02-广东移动-ChatGPT, B英国02-ChatGPT-广州移动, C英国02-ChatGPT-杭州联通, A印尼02-ChatGPT-广东移动, B印尼02-ChatGPT-广州移动, C印尼02-ChatGPT-杭州联通, A泰国02-广东移动, B泰国02-广州移动, C泰国02-杭州联通, A意大利01-广东移动, B意大利01-杭州联通, C意大利01-广州移动, A西班牙01-广东移动, B西班牙01-广州移动, D西班牙01-杭州联通, A乌克兰01-广东移动, C乌克兰01-广州移动, D乌克兰01-杭州联通, A拉脱维亚01-广东移动, C拉脱维亚01-广州移动, D拉脱维亚01-杭州联通, A芬兰01-广东移动, B芬兰01-广州移动, C芬兰01-杭州联通, A土耳其02-广东移动, B土耳其02-广州移动, C土耳其02-杭州联通, A波兰01-广东移动, B波兰01-广州移动, C波兰01-杭州联通, A美国03-广东移动-ChatGPT, B美国03-ChatGPT-杭州联通, C美国03-ChatGPT-广州移动, A新加坡02-广东移动, C新加坡02-广州移动, A韩国01-广东移动, B韩国01-杭州联通, C韩国01-广州移动, A香港03-杭州联通, B香港03-广东移动, C香港03-广州移动, A越南02-广东移动, B越南02-广州移动, D越南02-杭州联通, A加拿大01-广东移动, B加拿大01-广州移动, D加拿大01-杭州联通, A德国01-杭州联通, B德国01-广东移动, D德国01-广州移动, A印度01-广东移动, B印度01-广州移动, A澳大利亚01-杭州联通, B澳大利亚01-广东移动, C澳大利亚01-广州移动, A台湾01-广东移动, B台湾01-杭州联通, C台湾01-广州移动, A荷兰01-广东移动, B荷兰01-杭州联通, C荷兰01-广州移动, A阿根廷01-广东移动, B阿根廷01-广州移动, C阿根廷01-杭州联通, A迪拜01-广东移动, B迪拜01-杭州联通, C迪拜01-广州移动, A俄罗斯01-广东移动, B俄罗斯01-杭州联通, C俄罗斯01-广州移动, A英国01-广东移动, B英国01-杭州联通, C英国01-广州移动, A土耳其01-广东移动, B土耳其01-杭州联通, C土耳其01-广州移动, A马来西亚02-广东移动, B马来西亚02-杭州联通, C马来西亚02-广州移动-ChatGPT, A泰国01-广东移动, B泰国01-杭州联通, C泰国01-广州移动, A印尼01-广东移动, B印尼01-杭州联通, C印尼01-广州移动, A香港01-广东移动, B香港01-广州移动, C香港01-杭州联通, anyhk香港01-只能在中国大陆以外使用] }
+    - { name: 自动选择, type: url-test, proxies: [A美国04-杭州联通, B美国04-广东移动, E美国04-广州移动, A卢森堡01-杭州联通, A新加坡04-广东移动, B新加坡04-广州移动, C新加坡04-杭州联通, A美国05-广东移动, B美国05-杭州联通, D美国05-广州移动, A美国06-杭州联通, B美国06-广东移动, C美国06-广州移动, A日本07-杭州联通, B日本07-广东移动, C日本07-广州移动, A新加坡03-广东移动, B新加坡03-广州移动, C新加坡03-杭州联通, A日本03-杭州联通, B日本03-广东移动, C日本03-广州移动, A香港07-广东移动, B香港07-杭州联通, C香港07-广州移动, A瑞典01-广东移动, A新加坡01-杭州联通, A菲律宾01-杭州联通, A沙特阿拉伯01-杭州联通, A日本09-杭州联通, E日本09-广州移动, A日本01-杭州联通, B日本01-广东移动, C日本01-广州移动, A美国01-杭州联通, A台湾05-广州移动, A巴拿马01-广州移动, A智利01-广州移动, A爱尔兰01-广州移动, B爱尔兰01-广东移动, A瑞士01-广州移动, A英国02-广东移动-ChatGPT, B英国02-ChatGPT-广州移动, C英国02-ChatGPT-杭州联通, A印尼02-ChatGPT-广东移动, B印尼02-ChatGPT-广州移动, C印尼02-ChatGPT-杭州联通, A泰国02-广东移动, B泰国02-广州移动, C泰国02-杭州联通, A意大利01-广东移动, B意大利01-杭州联通, C意大利01-广州移动, A西班牙01-广东移动, B西班牙01-广州移动, D西班牙01-杭州联通, A乌克兰01-广东移动, C乌克兰01-广州移动, D乌克兰01-杭州联通, A拉脱维亚01-广东移动, C拉脱维亚01-广州移动, D拉脱维亚01-杭州联通, A芬兰01-广东移动, B芬兰01-广州移动, C芬兰01-杭州联通, A土耳其02-广东移动, B土耳其02-广州移动, C土耳其02-杭州联通, A波兰01-广东移动, B波兰01-广州移动, C波兰01-杭州联通, A美国03-广东移动-ChatGPT, B美国03-ChatGPT-杭州联通, C美国03-ChatGPT-广州移动, A新加坡02-广东移动, C新加坡02-广州移动, A韩国01-广东移动, B韩国01-杭州联通, C韩国01-广州移动, A香港03-杭州联通, B香港03-广东移动, C香港03-广州移动, A越南02-广东移动, B越南02-广州移动, D越南02-杭州联通, A加拿大01-广东移动, B加拿大01-广州移动, D加拿大01-杭州联通, A德国01-杭州联通, B德国01-广东移动, D德国01-广州移动, A印度01-广东移动, B印度01-广州移动, A澳大利亚01-杭州联通, B澳大利亚01-广东移动, C澳大利亚01-广州移动, A台湾01-广东移动, B台湾01-杭州联通, C台湾01-广州移动, A荷兰01-广东移动, B荷兰01-杭州联通, C荷兰01-广州移动, A阿根廷01-广东移动, B阿根廷01-广州移动, C阿根廷01-杭州联通, A迪拜01-广东移动, B迪拜01-杭州联通, C迪拜01-广州移动, A俄罗斯01-广东移动, B俄罗斯01-杭州联通, C俄罗斯01-广州移动, A英国01-广东移动, B英国01-杭州联通, C英国01-广州移动, A土耳其01-广东移动, B土耳其01-杭州联通, C土耳其01-广州移动, A马来西亚02-广东移动, B马来西亚02-杭州联通, C马来西亚02-广州移动-ChatGPT, A泰国01-广东移动, B泰国01-杭州联通, C泰国01-广州移动, A印尼01-广东移动, B印尼01-杭州联通, C印尼01-广州移动, A香港01-广东移动, B香港01-广州移动, C香港01-杭州联通, anyhk香港01-只能在中国大陆以外使用], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
+    - { name: 故障转移, type: fallback, proxies: [A美国04-杭州联通, B美国04-广东移动, E美国04-广州移动, A卢森堡01-杭州联通, A新加坡04-广东移动, B新加坡04-广州移动, C新加坡04-杭州联通, A美国05-广东移动, B美国05-杭州联通, D美国05-广州移动, A美国06-杭州联通, B美国06-广东移动, C美国06-广州移动, A日本07-杭州联通, B日本07-广东移动, C日本07-广州移动, A新加坡03-广东移动, B新加坡03-广州移动, C新加坡03-杭州联通, A日本03-杭州联通, B日本03-广东移动, C日本03-广州移动, A香港07-广东移动, B香港07-杭州联通, C香港07-广州移动, A瑞典01-广东移动, A新加坡01-杭州联通, A菲律宾01-杭州联通, A沙特阿拉伯01-杭州联通, A日本09-杭州联通, E日本09-广州移动, A日本01-杭州联通, B日本01-广东移动, C日本01-广州移动, A美国01-杭州联通, A台湾05-广州移动, A巴拿马01-广州移动, A智利01-广州移动, A爱尔兰01-广州移动, B爱尔兰01-广东移动, A瑞士01-广州移动, A英国02-广东移动-ChatGPT, B英国02-ChatGPT-广州移动, C英国02-ChatGPT-杭州联通, A印尼02-ChatGPT-广东移动, B印尼02-ChatGPT-广州移动, C印尼02-ChatGPT-杭州联通, A泰国02-广东移动, B泰国02-广州移动, C泰国02-杭州联通, A意大利01-广东移动, B意大利01-杭州联通, C意大利01-广州移动, A西班牙01-广东移动, B西班牙01-广州移动, D西班牙01-杭州联通, A乌克兰01-广东移动, C乌克兰01-广州移动, D乌克兰01-杭州联通, A拉脱维亚01-广东移动, C拉脱维亚01-广州移动, D拉脱维亚01-杭州联通, A芬兰01-广东移动, B芬兰01-广州移动, C芬兰01-杭州联通, A土耳其02-广东移动, B土耳其02-广州移动, C土耳其02-杭州联通, A波兰01-广东移动, B波兰01-广州移动, C波兰01-杭州联通, A美国03-广东移动-ChatGPT, B美国03-ChatGPT-杭州联通, C美国03-ChatGPT-广州移动, A新加坡02-广东移动, C新加坡02-广州移动, A韩国01-广东移动, B韩国01-杭州联通, C韩国01-广州移动, A香港03-杭州联通, B香港03-广东移动, C香港03-广州移动, A越南02-广东移动, B越南02-广州移动, D越南02-杭州联通, A加拿大01-广东移动, B加拿大01-广州移动, D加拿大01-杭州联通, A德国01-杭州联通, B德国01-广东移动, D德国01-广州移动, A印度01-广东移动, B印度01-广州移动, A澳大利亚01-杭州联通, B澳大利亚01-广东移动, C澳大利亚01-广州移动, A台湾01-广东移动, B台湾01-杭州联通, C台湾01-广州移动, A荷兰01-广东移动, B荷兰01-杭州联通, C荷兰01-广州移动, A阿根廷01-广东移动, B阿根廷01-广州移动, C阿根廷01-杭州联通, A迪拜01-广东移动, B迪拜01-杭州联通, C迪拜01-广州移动, A俄罗斯01-广东移动, B俄罗斯01-杭州联通, C俄罗斯01-广州移动, A英国01-广东移动, B英国01-杭州联通, C英国01-广州移动, A土耳其01-广东移动, B土耳其01-杭州联通, C土耳其01-广州移动, A马来西亚02-广东移动, B马来西亚02-杭州联通, C马来西亚02-广州移动-ChatGPT, A泰国01-广东移动, B泰国01-杭州联通, C泰国01-广州移动, A印尼01-广东移动, B印尼01-杭州联通, C印尼01-广州移动, A香港01-广东移动, B香港01-广州移动, C香港01-杭州联通, anyhk香港01-只能在中国大陆以外使用], url: 'http://www.gstatic.com/generate_204', interval: 7200 }
+rules:
+    - 'DOMAIN,hd8.lgm99.com,DIRECT'
+    - 'DOMAIN-SUFFIX,services.googleapis.cn,雷公马'
+    - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,雷公马'
+    - 'DOMAIN,safebrowsing.urlsec.qq.com,DIRECT'
+    - 'DOMAIN,safebrowsing.googleapis.com,DIRECT'
+    - 'DOMAIN,developer.apple.com,雷公马'
+    - 'DOMAIN-SUFFIX,digicert.com,雷公马'
+    - 'DOMAIN,ocsp.apple.com,雷公马'
+    - 'DOMAIN,ocsp.comodoca.com,雷公马'
+    - 'DOMAIN,ocsp.usertrust.com,雷公马'
+    - 'DOMAIN,ocsp.sectigo.com,雷公马'
+    - 'DOMAIN,ocsp.verisign.net,雷公马'
+    - 'DOMAIN-SUFFIX,apple-dns.net,雷公马'
+    - 'DOMAIN,testflight.apple.com,雷公马'
+    - 'DOMAIN,sandbox.itunes.apple.com,雷公马'
+    - 'DOMAIN,itunes.apple.com,雷公马'
+    - 'DOMAIN-SUFFIX,apps.apple.com,雷公马'
+    - 'DOMAIN-SUFFIX,blobstore.apple.com,雷公马'
+    - 'DOMAIN,cvws.icloud-content.com,雷公马'
+    - 'DOMAIN-SUFFIX,mzstatic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,itunes.apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud-content.com,DIRECT'
+    - 'DOMAIN-SUFFIX,me.com,DIRECT'
+    - 'DOMAIN-SUFFIX,aaplimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cdn20.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cdn-apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,akadns.net,DIRECT'
+    - 'DOMAIN-SUFFIX,akamaiedge.net,DIRECT'
+    - 'DOMAIN-SUFFIX,edgekey.net,DIRECT'
+    - 'DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,mwcname.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple-mapkit.com,DIRECT'
+    - 'DOMAIN-SUFFIX,126.com,DIRECT'
+    - 'DOMAIN-SUFFIX,126.net,DIRECT'
+    - 'DOMAIN-SUFFIX,127.net,DIRECT'
+    - 'DOMAIN-SUFFIX,163.com,DIRECT'
+    - 'DOMAIN-SUFFIX,360buyimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,36kr.com,DIRECT'
+    - 'DOMAIN-SUFFIX,acfun.tv,DIRECT'
+    - 'DOMAIN-SUFFIX,air-matters.com,DIRECT'
+    - 'DOMAIN-SUFFIX,aixifan.com,DIRECT'
+    - 'DOMAIN-KEYWORD,alicdn,DIRECT'
+    - 'DOMAIN-KEYWORD,alipay,DIRECT'
+    - 'DOMAIN-KEYWORD,taobao,DIRECT'
+    - 'DOMAIN-SUFFIX,amap.com,DIRECT'
+    - 'DOMAIN-SUFFIX,autonavi.com,DIRECT'
+    - 'DOMAIN-KEYWORD,baidu,DIRECT'
+    - 'DOMAIN-SUFFIX,bdimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bdstatic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bilibili.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bilivideo.com,DIRECT'
+    - 'DOMAIN-SUFFIX,caiyunapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,clouddn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cnbeta.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cnbetacdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cootekservice.com,DIRECT'
+    - 'DOMAIN-SUFFIX,csdn.net,DIRECT'
+    - 'DOMAIN-SUFFIX,ctrip.com,DIRECT'
+    - 'DOMAIN-SUFFIX,dgtle.com,DIRECT'
+    - 'DOMAIN-SUFFIX,dianping.com,DIRECT'
+    - 'DOMAIN-SUFFIX,douban.com,DIRECT'
+    - 'DOMAIN-SUFFIX,doubanio.com,DIRECT'
+    - 'DOMAIN-SUFFIX,duokan.com,DIRECT'
+    - 'DOMAIN-SUFFIX,easou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ele.me,DIRECT'
+    - 'DOMAIN-SUFFIX,feng.com,DIRECT'
+    - 'DOMAIN-SUFFIX,fir.im,DIRECT'
+    - 'DOMAIN-SUFFIX,frdic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,g-cores.com,DIRECT'
+    - 'DOMAIN-SUFFIX,godic.net,DIRECT'
+    - 'DOMAIN-SUFFIX,gtimg.com,DIRECT'
+    - 'DOMAIN,cdn.hockeyapp.net,DIRECT'
+    - 'DOMAIN-SUFFIX,hongxiu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,hxcdn.net,DIRECT'
+    - 'DOMAIN-SUFFIX,iciba.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ifeng.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ifengimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ipip.net,DIRECT'
+    - 'DOMAIN-SUFFIX,iqiyi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,jd.com,DIRECT'
+    - 'DOMAIN-SUFFIX,jianshu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,knewone.com,DIRECT'
+    - 'DOMAIN-SUFFIX,le.com,DIRECT'
+    - 'DOMAIN-SUFFIX,lecloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,lemicp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,licdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,luoo.net,DIRECT'
+    - 'DOMAIN-SUFFIX,meituan.com,DIRECT'
+    - 'DOMAIN-SUFFIX,meituan.net,DIRECT'
+    - 'DOMAIN-SUFFIX,mi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miaopai.com,DIRECT'
+    - 'DOMAIN-SUFFIX,microsoft.com,DIRECT'
+    - 'DOMAIN-SUFFIX,microsoftonline.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miui.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miwifi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,mob.com,DIRECT'
+    - 'DOMAIN-SUFFIX,netease.com,DIRECT'
+    - 'DOMAIN-SUFFIX,office.com,DIRECT'
+    - 'DOMAIN-SUFFIX,office365.com,DIRECT'
+    - 'DOMAIN-KEYWORD,officecdn,DIRECT'
+    - 'DOMAIN-SUFFIX,oschina.net,DIRECT'
+    - 'DOMAIN-SUFFIX,ppsimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,pstatp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qcloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qdaily.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qdmm.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qhimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qhres.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qidian.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qihucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiniu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiniucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiyipic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qq.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qqurl.com,DIRECT'
+    - 'DOMAIN-SUFFIX,rarbg.to,DIRECT'
+    - 'DOMAIN-SUFFIX,ruguoapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,segmentfault.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sinaapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,smzdm.com,DIRECT'
+    - 'DOMAIN-SUFFIX,snapdrop.net,DIRECT'
+    - 'DOMAIN-SUFFIX,sogou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sogoucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sohu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,soku.com,DIRECT'
+    - 'DOMAIN-SUFFIX,speedtest.net,DIRECT'
+    - 'DOMAIN-SUFFIX,sspai.com,DIRECT'
+    - 'DOMAIN-SUFFIX,suning.com,DIRECT'
+    - 'DOMAIN-SUFFIX,taobao.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tencent.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tenpay.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tianyancha.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tmall.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tudou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,umetrip.com,DIRECT'
+    - 'DOMAIN-SUFFIX,upaiyun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,upyun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,veryzhun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,weather.com,DIRECT'
+    - 'DOMAIN-SUFFIX,weibo.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xiami.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xiami.net,DIRECT'
+    - 'DOMAIN-SUFFIX,xiaomicp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ximalaya.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xmcdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xunlei.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yhd.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yihaodianimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yinxiang.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ykimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,youdao.com,DIRECT'
+    - 'DOMAIN-SUFFIX,youku.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zealer.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zhihu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zhimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zimuzu.tv,DIRECT'
+    - 'DOMAIN-SUFFIX,zoho.com,DIRECT'
+    - 'DOMAIN-KEYWORD,amazon,雷公马'
+    - 'DOMAIN-KEYWORD,google,雷公马'
+    - 'DOMAIN-KEYWORD,gmail,雷公马'
+    - 'DOMAIN-KEYWORD,youtube,雷公马'
+    - 'DOMAIN-KEYWORD,facebook,雷公马'
+    - 'DOMAIN-SUFFIX,fb.me,雷公马'
+    - 'DOMAIN-SUFFIX,fbcdn.net,雷公马'
+    - 'DOMAIN-KEYWORD,twitter,雷公马'
+    - 'DOMAIN-KEYWORD,instagram,雷公马'
+    - 'DOMAIN-KEYWORD,dropbox,雷公马'
+    - 'DOMAIN-SUFFIX,twimg.com,雷公马'
+    - 'DOMAIN-KEYWORD,blogspot,雷公马'
+    - 'DOMAIN-SUFFIX,youtu.be,雷公马'
+    - 'DOMAIN-KEYWORD,whatsapp,雷公马'
+    - 'DOMAIN-KEYWORD,admarvel,REJECT'
+    - 'DOMAIN-KEYWORD,admaster,REJECT'
+    - 'DOMAIN-KEYWORD,adsage,REJECT'
+    - 'DOMAIN-KEYWORD,adsmogo,REJECT'
+    - 'DOMAIN-KEYWORD,adsrvmedia,REJECT'
+    - 'DOMAIN-KEYWORD,adwords,REJECT'
+    - 'DOMAIN-KEYWORD,adservice,REJECT'
+    - 'DOMAIN-SUFFIX,appsflyer.com,REJECT'
+    - 'DOMAIN-KEYWORD,domob,REJECT'
+    - 'DOMAIN-SUFFIX,doubleclick.net,REJECT'
+    - 'DOMAIN-KEYWORD,duomeng,REJECT'
+    - 'DOMAIN-KEYWORD,dwtrack,REJECT'
+    - 'DOMAIN-KEYWORD,guanggao,REJECT'
+    - 'DOMAIN-KEYWORD,lianmeng,REJECT'
+    - 'DOMAIN-SUFFIX,mmstat.com,REJECT'
+    - 'DOMAIN-KEYWORD,mopub,REJECT'
+    - 'DOMAIN-KEYWORD,omgmta,REJECT'
+    - 'DOMAIN-KEYWORD,openx,REJECT'
+    - 'DOMAIN-KEYWORD,partnerad,REJECT'
+    - 'DOMAIN-KEYWORD,pingfore,REJECT'
+    - 'DOMAIN-KEYWORD,supersonicads,REJECT'
+    - 'DOMAIN-KEYWORD,uedas,REJECT'
+    - 'DOMAIN-KEYWORD,umeng,REJECT'
+    - 'DOMAIN-KEYWORD,usage,REJECT'
+    - 'DOMAIN-SUFFIX,vungle.com,REJECT'
+    - 'DOMAIN-KEYWORD,wlmonitor,REJECT'
+    - 'DOMAIN-KEYWORD,zjtoolbar,REJECT'
+    - 'DOMAIN-SUFFIX,9to5mac.com,雷公马'
+    - 'DOMAIN-SUFFIX,abpchina.org,雷公马'
+    - 'DOMAIN-SUFFIX,adblockplus.org,雷公马'
+    - 'DOMAIN-SUFFIX,adobe.com,雷公马'
+    - 'DOMAIN-SUFFIX,akamaized.net,雷公马'
+    - 'DOMAIN-SUFFIX,alfredapp.com,雷公马'
+    - 'DOMAIN-SUFFIX,amplitude.com,雷公马'
+    - 'DOMAIN-SUFFIX,ampproject.org,雷公马'
+    - 'DOMAIN-SUFFIX,android.com,雷公马'
+    - 'DOMAIN-SUFFIX,angularjs.org,雷公马'
+    - 'DOMAIN-SUFFIX,aolcdn.com,雷公马'
+    - 'DOMAIN-SUFFIX,apkpure.com,雷公马'
+    - 'DOMAIN-SUFFIX,appledaily.com,雷公马'
+    - 'DOMAIN-SUFFIX,appshopper.com,雷公马'
+    - 'DOMAIN-SUFFIX,appspot.com,雷公马'
+    - 'DOMAIN-SUFFIX,arcgis.com,雷公马'
+    - 'DOMAIN-SUFFIX,archive.org,雷公马'
+    - 'DOMAIN-SUFFIX,armorgames.com,雷公马'
+    - 'DOMAIN-SUFFIX,aspnetcdn.com,雷公马'
+    - 'DOMAIN-SUFFIX,att.com,雷公马'
+    - 'DOMAIN-SUFFIX,awsstatic.com,雷公马'
+    - 'DOMAIN-SUFFIX,azureedge.net,雷公马'
+    - 'DOMAIN-SUFFIX,azurewebsites.net,雷公马'
+    - 'DOMAIN-SUFFIX,bing.com,雷公马'
+    - 'DOMAIN-SUFFIX,bintray.com,雷公马'
+    - 'DOMAIN-SUFFIX,bit.com,雷公马'
+    - 'DOMAIN-SUFFIX,bit.ly,雷公马'
+    - 'DOMAIN-SUFFIX,bitbucket.org,雷公马'
+    - 'DOMAIN-SUFFIX,bjango.com,雷公马'
+    - 'DOMAIN-SUFFIX,bkrtx.com,雷公马'
+    - 'DOMAIN-SUFFIX,blog.com,雷公马'
+    - 'DOMAIN-SUFFIX,blogcdn.com,雷公马'
+    - 'DOMAIN-SUFFIX,blogger.com,雷公马'
+    - 'DOMAIN-SUFFIX,blogsmithmedia.com,雷公马'
+    - 'DOMAIN-SUFFIX,blogspot.com,雷公马'
+    - 'DOMAIN-SUFFIX,blogspot.hk,雷公马'
+    - 'DOMAIN-SUFFIX,bloomberg.com,雷公马'
+    - 'DOMAIN-SUFFIX,box.com,雷公马'
+    - 'DOMAIN-SUFFIX,box.net,雷公马'
+    - 'DOMAIN-SUFFIX,cachefly.net,雷公马'
+    - 'DOMAIN-SUFFIX,chromium.org,雷公马'
+    - 'DOMAIN-SUFFIX,cl.ly,雷公马'
+    - 'DOMAIN-SUFFIX,cloudflare.com,雷公马'
+    - 'DOMAIN-SUFFIX,cloudfront.net,雷公马'
+    - 'DOMAIN-SUFFIX,cloudmagic.com,雷公马'
+    - 'DOMAIN-SUFFIX,cmail19.com,雷公马'
+    - 'DOMAIN-SUFFIX,cnet.com,雷公马'
+    - 'DOMAIN-SUFFIX,cocoapods.org,雷公马'
+    - 'DOMAIN-SUFFIX,comodoca.com,雷公马'
+    - 'DOMAIN-SUFFIX,crashlytics.com,雷公马'
+    - 'DOMAIN-SUFFIX,culturedcode.com,雷公马'
+    - 'DOMAIN-SUFFIX,d.pr,雷公马'
+    - 'DOMAIN-SUFFIX,danilo.to,雷公马'
+    - 'DOMAIN-SUFFIX,dayone.me,雷公马'
+    - 'DOMAIN-SUFFIX,db.tt,雷公马'
+    - 'DOMAIN-SUFFIX,deskconnect.com,雷公马'
+    - 'DOMAIN-SUFFIX,disq.us,雷公马'
+    - 'DOMAIN-SUFFIX,disqus.com,雷公马'
+    - 'DOMAIN-SUFFIX,disquscdn.com,雷公马'
+    - 'DOMAIN-SUFFIX,dnsimple.com,雷公马'
+    - 'DOMAIN-SUFFIX,docker.com,雷公马'
+    - 'DOMAIN-SUFFIX,dribbble.com,雷公马'
+    - 'DOMAIN-SUFFIX,droplr.com,雷公马'
+    - 'DOMAIN-SUFFIX,duckduckgo.com,雷公马'
+    - 'DOMAIN-SUFFIX,dueapp.com,雷公马'
+    - 'DOMAIN-SUFFIX,dytt8.net,雷公马'
+    - 'DOMAIN-SUFFIX,edgecastcdn.net,雷公马'
+    - 'DOMAIN-SUFFIX,edgekey.net,雷公马'
+    - 'DOMAIN-SUFFIX,edgesuite.net,雷公马'
+    - 'DOMAIN-SUFFIX,engadget.com,雷公马'
+    - 'DOMAIN-SUFFIX,entrust.net,雷公马'
+    - 'DOMAIN-SUFFIX,eurekavpt.com,雷公马'
+    - 'DOMAIN-SUFFIX,evernote.com,雷公马'
+    - 'DOMAIN-SUFFIX,fabric.io,雷公马'
+    - 'DOMAIN-SUFFIX,fast.com,雷公马'
+    - 'DOMAIN-SUFFIX,fastly.net,雷公马'
+    - 'DOMAIN-SUFFIX,fc2.com,雷公马'
+    - 'DOMAIN-SUFFIX,feedburner.com,雷公马'
+    - 'DOMAIN-SUFFIX,feedly.com,雷公马'
+    - 'DOMAIN-SUFFIX,feedsportal.com,雷公马'
+    - 'DOMAIN-SUFFIX,fiftythree.com,雷公马'
+    - 'DOMAIN-SUFFIX,firebaseio.com,雷公马'
+    - 'DOMAIN-SUFFIX,flexibits.com,雷公马'
+    - 'DOMAIN-SUFFIX,flickr.com,雷公马'
+    - 'DOMAIN-SUFFIX,flipboard.com,雷公马'
+    - 'DOMAIN-SUFFIX,g.co,雷公马'
+    - 'DOMAIN-SUFFIX,gabia.net,雷公马'
+    - 'DOMAIN-SUFFIX,geni.us,雷公马'
+    - 'DOMAIN-SUFFIX,gfx.ms,雷公马'
+    - 'DOMAIN-SUFFIX,ggpht.com,雷公马'
+    - 'DOMAIN-SUFFIX,ghostnoteapp.com,雷公马'
+    - 'DOMAIN-SUFFIX,git.io,雷公马'
+    - 'DOMAIN-KEYWORD,github,雷公马'
+    - 'DOMAIN-SUFFIX,globalsign.com,雷公马'
+    - 'DOMAIN-SUFFIX,gmodules.com,雷公马'
+    - 'DOMAIN-SUFFIX,godaddy.com,雷公马'
+    - 'DOMAIN-SUFFIX,golang.org,雷公马'
+    - 'DOMAIN-SUFFIX,gongm.in,雷公马'
+    - 'DOMAIN-SUFFIX,goo.gl,雷公马'
+    - 'DOMAIN-SUFFIX,goodreaders.com,雷公马'
+    - 'DOMAIN-SUFFIX,goodreads.com,雷公马'
+    - 'DOMAIN-SUFFIX,gravatar.com,雷公马'
+    - 'DOMAIN-SUFFIX,gstatic.com,雷公马'
+    - 'DOMAIN-SUFFIX,gvt0.com,雷公马'
+    - 'DOMAIN-SUFFIX,hockeyapp.net,雷公马'
+    - 'DOMAIN-SUFFIX,hotmail.com,雷公马'
+    - 'DOMAIN-SUFFIX,icons8.com,雷公马'
+    - 'DOMAIN-SUFFIX,ifixit.com,雷公马'
+    - 'DOMAIN-SUFFIX,ift.tt,雷公马'
+    - 'DOMAIN-SUFFIX,ifttt.com,雷公马'
+    - 'DOMAIN-SUFFIX,iherb.com,雷公马'
+    - 'DOMAIN-SUFFIX,imageshack.us,雷公马'
+    - 'DOMAIN-SUFFIX,img.ly,雷公马'
+    - 'DOMAIN-SUFFIX,imgur.com,雷公马'
+    - 'DOMAIN-SUFFIX,imore.com,雷公马'
+    - 'DOMAIN-SUFFIX,instapaper.com,雷公马'
+    - 'DOMAIN-SUFFIX,ipn.li,雷公马'
+    - 'DOMAIN-SUFFIX,is.gd,雷公马'
+    - 'DOMAIN-SUFFIX,issuu.com,雷公马'
+    - 'DOMAIN-SUFFIX,itgonglun.com,雷公马'
+    - 'DOMAIN-SUFFIX,itun.es,雷公马'
+    - 'DOMAIN-SUFFIX,ixquick.com,雷公马'
+    - 'DOMAIN-SUFFIX,j.mp,雷公马'
+    - 'DOMAIN-SUFFIX,js.revsci.net,雷公马'
+    - 'DOMAIN-SUFFIX,jshint.com,雷公马'
+    - 'DOMAIN-SUFFIX,jtvnw.net,雷公马'
+    - 'DOMAIN-SUFFIX,justgetflux.com,雷公马'
+    - 'DOMAIN-SUFFIX,kat.cr,雷公马'
+    - 'DOMAIN-SUFFIX,klip.me,雷公马'
+    - 'DOMAIN-SUFFIX,libsyn.com,雷公马'
+    - 'DOMAIN-SUFFIX,linkedin.com,雷公马'
+    - 'DOMAIN-SUFFIX,line-apps.com,雷公马'
+    - 'DOMAIN-SUFFIX,linode.com,雷公马'
+    - 'DOMAIN-SUFFIX,lithium.com,雷公马'
+    - 'DOMAIN-SUFFIX,littlehj.com,雷公马'
+    - 'DOMAIN-SUFFIX,live.com,雷公马'
+    - 'DOMAIN-SUFFIX,live.net,雷公马'
+    - 'DOMAIN-SUFFIX,livefilestore.com,雷公马'
+    - 'DOMAIN-SUFFIX,llnwd.net,雷公马'
+    - 'DOMAIN-SUFFIX,macid.co,雷公马'
+    - 'DOMAIN-SUFFIX,macromedia.com,雷公马'
+    - 'DOMAIN-SUFFIX,macrumors.com,雷公马'
+    - 'DOMAIN-SUFFIX,mashable.com,雷公马'
+    - 'DOMAIN-SUFFIX,mathjax.org,雷公马'
+    - 'DOMAIN-SUFFIX,medium.com,雷公马'
+    - 'DOMAIN-SUFFIX,mega.co.nz,雷公马'
+    - 'DOMAIN-SUFFIX,mega.nz,雷公马'
+    - 'DOMAIN-SUFFIX,megaupload.com,雷公马'
+    - 'DOMAIN-SUFFIX,microsofttranslator.com,雷公马'
+    - 'DOMAIN-SUFFIX,mindnode.com,雷公马'
+    - 'DOMAIN-SUFFIX,mobile01.com,雷公马'
+    - 'DOMAIN-SUFFIX,modmyi.com,雷公马'
+    - 'DOMAIN-SUFFIX,msedge.net,雷公马'
+    - 'DOMAIN-SUFFIX,myfontastic.com,雷公马'
+    - 'DOMAIN-SUFFIX,name.com,雷公马'
+    - 'DOMAIN-SUFFIX,nextmedia.com,雷公马'
+    - 'DOMAIN-SUFFIX,nsstatic.net,雷公马'
+    - 'DOMAIN-SUFFIX,nssurge.com,雷公马'
+    - 'DOMAIN-SUFFIX,nyt.com,雷公马'
+    - 'DOMAIN-SUFFIX,nytimes.com,雷公马'
+    - 'DOMAIN-SUFFIX,omnigroup.com,雷公马'
+    - 'DOMAIN-SUFFIX,onedrive.com,雷公马'
+    - 'DOMAIN-SUFFIX,onenote.com,雷公马'
+    - 'DOMAIN-SUFFIX,ooyala.com,雷公马'
+    - 'DOMAIN-SUFFIX,openvpn.net,雷公马'
+    - 'DOMAIN-SUFFIX,openwrt.org,雷公马'
+    - 'DOMAIN-SUFFIX,orkut.com,雷公马'
+    - 'DOMAIN-SUFFIX,osxdaily.com,雷公马'
+    - 'DOMAIN-SUFFIX,outlook.com,雷公马'
+    - 'DOMAIN-SUFFIX,ow.ly,雷公马'
+    - 'DOMAIN-SUFFIX,paddleapi.com,雷公马'
+    - 'DOMAIN-SUFFIX,parallels.com,雷公马'
+    - 'DOMAIN-SUFFIX,parse.com,雷公马'
+    - 'DOMAIN-SUFFIX,pdfexpert.com,雷公马'
+    - 'DOMAIN-SUFFIX,periscope.tv,雷公马'
+    - 'DOMAIN-SUFFIX,pinboard.in,雷公马'
+    - 'DOMAIN-SUFFIX,pinterest.com,雷公马'
+    - 'DOMAIN-SUFFIX,pixelmator.com,雷公马'
+    - 'DOMAIN-SUFFIX,pixiv.net,雷公马'
+    - 'DOMAIN-SUFFIX,playpcesor.com,雷公马'
+    - 'DOMAIN-SUFFIX,playstation.com,雷公马'
+    - 'DOMAIN-SUFFIX,playstation.com.hk,雷公马'
+    - 'DOMAIN-SUFFIX,playstation.net,雷公马'
+    - 'DOMAIN-SUFFIX,playstationnetwork.com,雷公马'
+    - 'DOMAIN-SUFFIX,pushwoosh.com,雷公马'
+    - 'DOMAIN-SUFFIX,rime.im,雷公马'
+    - 'DOMAIN-SUFFIX,servebom.com,雷公马'
+    - 'DOMAIN-SUFFIX,sfx.ms,雷公马'
+    - 'DOMAIN-SUFFIX,shadowsocks.org,雷公马'
+    - 'DOMAIN-SUFFIX,sharethis.com,雷公马'
+    - 'DOMAIN-SUFFIX,shazam.com,雷公马'
+    - 'DOMAIN-SUFFIX,skype.com,雷公马'
+    - 'DOMAIN-SUFFIX,smartdns雷公马.com,雷公马'
+    - 'DOMAIN-SUFFIX,smartmailcloud.com,雷公马'
+    - 'DOMAIN-SUFFIX,sndcdn.com,雷公马'
+    - 'DOMAIN-SUFFIX,sony.com,雷公马'
+    - 'DOMAIN-SUFFIX,soundcloud.com,雷公马'
+    - 'DOMAIN-SUFFIX,sourceforge.net,雷公马'
+    - 'DOMAIN-SUFFIX,spotify.com,雷公马'
+    - 'DOMAIN-SUFFIX,squarespace.com,雷公马'
+    - 'DOMAIN-SUFFIX,sstatic.net,雷公马'
+    - 'DOMAIN-SUFFIX,st.luluku.pw,雷公马'
+    - 'DOMAIN-SUFFIX,stackoverflow.com,雷公马'
+    - 'DOMAIN-SUFFIX,startpage.com,雷公马'
+    - 'DOMAIN-SUFFIX,staticflickr.com,雷公马'
+    - 'DOMAIN-SUFFIX,steamcommunity.com,雷公马'
+    - 'DOMAIN-SUFFIX,symauth.com,雷公马'
+    - 'DOMAIN-SUFFIX,symcb.com,雷公马'
+    - 'DOMAIN-SUFFIX,symcd.com,雷公马'
+    - 'DOMAIN-SUFFIX,tapbots.com,雷公马'
+    - 'DOMAIN-SUFFIX,tapbots.net,雷公马'
+    - 'DOMAIN-SUFFIX,tdesktop.com,雷公马'
+    - 'DOMAIN-SUFFIX,techcrunch.com,雷公马'
+    - 'DOMAIN-SUFFIX,techsmith.com,雷公马'
+    - 'DOMAIN-SUFFIX,thepiratebay.org,雷公马'
+    - 'DOMAIN-SUFFIX,theverge.com,雷公马'
+    - 'DOMAIN-SUFFIX,time.com,雷公马'
+    - 'DOMAIN-SUFFIX,timeinc.net,雷公马'
+    - 'DOMAIN-SUFFIX,tiny.cc,雷公马'
+    - 'DOMAIN-SUFFIX,tinypic.com,雷公马'
+    - 'DOMAIN-SUFFIX,tmblr.co,雷公马'
+    - 'DOMAIN-SUFFIX,todoist.com,雷公马'
+    - 'DOMAIN-SUFFIX,trello.com,雷公马'
+    - 'DOMAIN-SUFFIX,trustasiassl.com,雷公马'
+    - 'DOMAIN-SUFFIX,tumblr.co,雷公马'
+    - 'DOMAIN-SUFFIX,tumblr.com,雷公马'
+    - 'DOMAIN-SUFFIX,tweetdeck.com,雷公马'
+    - 'DOMAIN-SUFFIX,tweetmarker.net,雷公马'
+    - 'DOMAIN-SUFFIX,twitch.tv,雷公马'
+    - 'DOMAIN-SUFFIX,txmblr.com,雷公马'
+    - 'DOMAIN-SUFFIX,typekit.net,雷公马'
+    - 'DOMAIN-SUFFIX,ubertags.com,雷公马'
+    - 'DOMAIN-SUFFIX,ublock.org,雷公马'
+    - 'DOMAIN-SUFFIX,ubnt.com,雷公马'
+    - 'DOMAIN-SUFFIX,ulyssesapp.com,雷公马'
+    - 'DOMAIN-SUFFIX,urchin.com,雷公马'
+    - 'DOMAIN-SUFFIX,usertrust.com,雷公马'
+    - 'DOMAIN-SUFFIX,v.gd,雷公马'
+    - 'DOMAIN-SUFFIX,v2ex.com,雷公马'
+    - 'DOMAIN-SUFFIX,vimeo.com,雷公马'
+    - 'DOMAIN-SUFFIX,vimeocdn.com,雷公马'
+    - 'DOMAIN-SUFFIX,vine.co,雷公马'
+    - 'DOMAIN-SUFFIX,vivaldi.com,雷公马'
+    - 'DOMAIN-SUFFIX,vox-cdn.com,雷公马'
+    - 'DOMAIN-SUFFIX,vsco.co,雷公马'
+    - 'DOMAIN-SUFFIX,vultr.com,雷公马'
+    - 'DOMAIN-SUFFIX,w.org,雷公马'
+    - 'DOMAIN-SUFFIX,w3schools.com,雷公马'
+    - 'DOMAIN-SUFFIX,webtype.com,雷公马'
+    - 'DOMAIN-SUFFIX,wikiwand.com,雷公马'
+    - 'DOMAIN-SUFFIX,wikileaks.org,雷公马'
+    - 'DOMAIN-SUFFIX,wikimedia.org,雷公马'
+    - 'DOMAIN-SUFFIX,wikipedia.com,雷公马'
+    - 'DOMAIN-SUFFIX,wikipedia.org,雷公马'
+    - 'DOMAIN-SUFFIX,windows.com,雷公马'
+    - 'DOMAIN-SUFFIX,windows.net,雷公马'
+    - 'DOMAIN-SUFFIX,wire.com,雷公马'
+    - 'DOMAIN-SUFFIX,wordpress.com,雷公马'
+    - 'DOMAIN-SUFFIX,workflowy.com,雷公马'
+    - 'DOMAIN-SUFFIX,wp.com,雷公马'
+    - 'DOMAIN-SUFFIX,wsj.com,雷公马'
+    - 'DOMAIN-SUFFIX,wsj.net,雷公马'
+    - 'DOMAIN-SUFFIX,xda-developers.com,雷公马'
+    - 'DOMAIN-SUFFIX,xeeno.com,雷公马'
+    - 'DOMAIN-SUFFIX,xiti.com,雷公马'
+    - 'DOMAIN-SUFFIX,yahoo.com,雷公马'
+    - 'DOMAIN-SUFFIX,yimg.com,雷公马'
+    - 'DOMAIN-SUFFIX,ying.com,雷公马'
+    - 'DOMAIN-SUFFIX,yoyo.org,雷公马'
+    - 'DOMAIN-SUFFIX,ytimg.com,雷公马'
+    - 'DOMAIN-SUFFIX,telegra.ph,雷公马'
+    - 'DOMAIN-SUFFIX,telegram.org,雷公马'
+    - 'IP-CIDR,91.108.4.0/22,雷公马,no-resolve'
+    - 'IP-CIDR,91.108.8.0/21,雷公马,no-resolve'
+    - 'IP-CIDR,91.108.16.0/22,雷公马,no-resolve'
+    - 'IP-CIDR,91.108.56.0/22,雷公马,no-resolve'
+    - 'IP-CIDR,149.154.160.0/20,雷公马,no-resolve'
+    - 'IP-CIDR6,2001:67c:4e8::/48,雷公马,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23d::/48,雷公马,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23f::/48,雷公马,no-resolve'
+    - 'IP-CIDR,120.232.181.162/32,雷公马,no-resolve'
+    - 'IP-CIDR,120.241.147.226/32,雷公马,no-resolve'
+    - 'IP-CIDR,120.253.253.226/32,雷公马,no-resolve'
+    - 'IP-CIDR,120.253.255.162/32,雷公马,no-resolve'
+    - 'IP-CIDR,120.253.255.34/32,雷公马,no-resolve'
+    - 'IP-CIDR,120.253.255.98/32,雷公马,no-resolve'
+    - 'IP-CIDR,180.163.150.162/32,雷公马,no-resolve'
+    - 'IP-CIDR,180.163.150.34/32,雷公马,no-resolve'
+    - 'IP-CIDR,180.163.151.162/32,雷公马,no-resolve'
+    - 'IP-CIDR,180.163.151.34/32,雷公马,no-resolve'
+    - 'IP-CIDR,203.208.39.0/24,雷公马,no-resolve'
+    - 'IP-CIDR,203.208.40.0/24,雷公马,no-resolve'
+    - 'IP-CIDR,203.208.41.0/24,雷公马,no-resolve'
+    - 'IP-CIDR,203.208.43.0/24,雷公马,no-resolve'
+    - 'IP-CIDR,203.208.50.0/24,雷公马,no-resolve'
+    - 'IP-CIDR,220.181.174.162/32,雷公马,no-resolve'
+    - 'IP-CIDR,220.181.174.226/32,雷公马,no-resolve'
+    - 'IP-CIDR,220.181.174.34/32,雷公马,no-resolve'
+    - 'DOMAIN,injections.adguard.org,DIRECT'
+    - 'DOMAIN,local.adguard.org,DIRECT'
+    - 'DOMAIN-SUFFIX,local,DIRECT'
+    - 'IP-CIDR,127.0.0.0/8,DIRECT'
+    - 'IP-CIDR,172.16.0.0/12,DIRECT'
+    - 'IP-CIDR,192.168.0.0/16,DIRECT'
+    - 'IP-CIDR,10.0.0.0/8,DIRECT'
+    - 'IP-CIDR,17.0.0.0/8,DIRECT'
+    - 'IP-CIDR,100.64.0.0/10,DIRECT'
+    - 'IP-CIDR,224.0.0.0/4,DIRECT'
+    - 'IP-CIDR6,fe80::/10,DIRECT'
+    - 'DOMAIN-SUFFIX,cn,DIRECT'
+    - 'DOMAIN-KEYWORD,-cn,DIRECT'
+    - 'GEOIP,CN,DIRECT'
+    - 'MATCH,雷公马'
