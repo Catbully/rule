@@ -1,666 +1,1063 @@
-mixed-port: 7890
+------#
+## 更新：2023-08-28 07:32:16
+## 感谢：https://github.com/Hackl0us/SS-Rule-Snippet
+## 链接：https://subscribe.ztpxxx.com/link/CQfjDCJrlE8qpL0c?clash=1
+#---------------------------------------------------#
+
+# HTTP 代理端口
+port: 7890 
+
+# SOCKS5 代理端口
+socks-port: 7891 
+
+# Linux 和 macOS 的 redir 代理端口
+redir-port: 7892 
+
+# 允许局域网的连接
 allow-lan: true
-bind-address: '*'
-mode: rule
-log-level: info
-external-controller: '127.0.0.1:9090'
-dns:
-    enable: true
-    ipv6: false
-    default-nameserver: [223.5.5.5, 119.29.29.29]
-    enhanced-mode: fake-ip
-    fake-ip-range: 198.18.0.1/16
-    use-hosts: true
-    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
-    fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
-    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+
+# 规则模式：Rule（规则） / Global（全局代理）/ Direct（全局直连）
+mode: Rule
+
+# 设置日志输出级别 (默认级别：silent，即不输出任何内容，以避免因日志内容过大而导致程序内存溢出）。
+# 5 个级别：silent / info / warning / error / debug。级别越高日志输出量越大，越倾向于调试，若需要请自行开启。
+log-level: silent
+# Clash 的 RESTful API
+external-controller: '0.0.0.0:9090'
+
+# RESTful API 的口令
+secret: '' 
+
+# 您可以将静态网页资源（如 clash-dashboard）放置在一个目录中，clash 将会服务于 `RESTful API/ui`
+# 参数应填写配置目录的相对路径或绝对路径。
+# external-ui: folder
+
+
 proxies:
-    - { name: A美国04-杭州联通, type: ss, server: a-us04.lgm88.top, port: 43172, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B美国04-广东移动, type: ss, server: b-us04.lgm88.top, port: 43172, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: E美国04-广州移动, type: ss, server: e-us04.lgm88.top, port: 43174, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A卢森堡01-杭州联通, type: ss, server: a-lsb01.lgm88.top, port: 41537, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A新加坡04-广东移动, type: ss, server: a-sgp04.lgm88.top, port: 49164, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B新加坡04-广州移动, type: ss, server: b-sgp04.lgm88.top, port: 49165, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C新加坡04-杭州联通, type: ss, server: c-sgp04.lgm88.top, port: 49165, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A美国05-广东移动, type: ss, server: a-us05.lgm88.top, port: 48316, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B美国05-杭州联通, type: ss, server: b-us05.lgm88.top, port: 48316, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: D美国05-广州移动, type: ss, server: d-us05.lgm88.top, port: 48316, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A美国06-杭州联通, type: ss, server: a-us06.lgm88.top, port: 48315, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B美国06-广东移动, type: ss, server: b-us06.lgm88.top, port: 48315, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C美国06-广州移动, type: ss, server: c-us06.lgm88.top, port: 48315, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A日本07-杭州联通, type: ss, server: a-jp07.lgm88.top, port: 42716, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B日本07-广东移动, type: ss, server: b-jp07.lgm88.top, port: 42716, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C日本07-广州移动, type: ss, server: c-jp07.lgm88.top, port: 42716, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A新加坡03-广东移动, type: ss, server: a-sgp03.lgm88.top, port: 47246, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B新加坡03-广州移动, type: ss, server: b-sgp03.lgm88.top, port: 47247, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C新加坡03-杭州联通, type: ss, server: c-sgp03.lgm88.top, port: 47247, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A日本03-杭州联通, type: ss, server: a-jp03.lgm88.top, port: 23415, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B日本03-广东移动, type: ss, server: b-jp03.lgm88.top, port: 23415, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C日本03-广州移动, type: ss, server: c-jp03.lgm88.top, port: 23475, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A香港07-广东移动, type: ss, server: a-hk07.lgm88.top, port: 41726, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B香港07-杭州联通, type: ss, server: b-hk07.lgm88.top, port: 41726, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C香港07-广州移动, type: ss, server: c-hk07.lgm88.top, port: 41726, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A瑞典01-广东移动, type: ss, server: a-rd01.lgm88.top, port: 47283, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A新加坡01-杭州联通, type: ss, server: a-sgp01.lgm88.top, port: 47362, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A菲律宾01-杭州联通, type: ss, server: a-flb01.lgm88.top, port: 25451, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A沙特阿拉伯01-杭州联通, type: ss, server: a-stalb01.lgm88.top, port: 49246, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A日本09-杭州联通, type: ss, server: a-jp09.lgm88.top, port: 47124, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: E日本09-广州移动, type: ss, server: e-jp09.lgm88.top, port: 47125, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A日本01-杭州联通, type: ss, server: a-jp01.lgm88.top, port: 36434, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B日本01-广东移动, type: ss, server: b-jp01.lgm88.top, port: 36434, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C日本01-广州移动, type: ss, server: c-jp01.lgm88.top, port: 36434, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A美国01-杭州联通, type: ss, server: a-us01.lgm88.top, port: 10661, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A台湾05-广州移动, type: ss, server: a-tw05.lgm88.top, port: 47251, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A巴拿马01-广州移动, type: ss, server: a-bnm01.lgm88.top, port: 48152, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A智利01-广州移动, type: ss, server: a-zl01.lgm88.top, port: 43621, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A爱尔兰01-广州移动, type: ss, server: a-ael01.lgm88.top, port: 47135, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B爱尔兰01-广东移动, type: ss, server: b-ael01.lgm88.top, port: 47135, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A瑞士01-广州移动, type: ss, server: a-rs01.lgm88.top, port: 46172, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A英国02-广东移动-ChatGPT, type: ss, server: a-uk02.lgm88.top, port: 42371, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B英国02-ChatGPT-广州移动, type: ss, server: b-uk02.lgm88.top, port: 42371, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C英国02-ChatGPT-杭州联通, type: ss, server: c-uk02.lgm88.top, port: 42371, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A印尼02-ChatGPT-广东移动, type: ss, server: a-yn02.lgm88.top, port: 32462, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B印尼02-ChatGPT-广州移动, type: ss, server: b-yn02.lgm88.top, port: 32462, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C印尼02-ChatGPT-杭州联通, type: ss, server: c-yn02.lgm88.top, port: 32462, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A泰国02-广东移动, type: ss, server: a-tg02.lgm88.top, port: 36714, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B泰国02-广州移动, type: ss, server: b-tg02.lgm88.top, port: 36714, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C泰国02-杭州联通, type: ss, server: c-tg02.lgm88.top, port: 36714, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A意大利01-广东移动, type: ss, server: a-ydl01.lgm88.top, port: 34910, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B意大利01-杭州联通, type: ss, server: b-ydl01.lgm88.top, port: 34910, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C意大利01-广州移动, type: ss, server: c-ydl01.lgm88.top, port: 34910, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A西班牙01-广东移动, type: ss, server: a-xby01.lgm88.top, port: 34610, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B西班牙01-广州移动, type: ss, server: b-xby01.lgm88.top, port: 34610, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: D西班牙01-杭州联通, type: ss, server: d-xby01.lgm88.top, port: 34610, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A乌克兰01-广东移动, type: ss, server: a-wkl01.lgm88.top, port: 37540, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C乌克兰01-广州移动, type: ss, server: c-wkl01.lgm88.top, port: 37540, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: D乌克兰01-杭州联通, type: ss, server: d-wkl01.lgm88.top, port: 37540, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A拉脱维亚01-广东移动, type: ss, server: a-ltwy01.lgm88.top, port: 37800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C拉脱维亚01-广州移动, type: ss, server: c-ltwy01.lgm88.top, port: 37800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: D拉脱维亚01-杭州联通, type: ss, server: d-ltwy01.lgm88.top, port: 37800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A芬兰01-广东移动, type: ss, server: a-fenlan01.lgm88.top, port: 39400, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B芬兰01-广州移动, type: ss, server: b-fenlan01.lgm88.top, port: 39401, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C芬兰01-杭州联通, type: ss, server: c-fenlan01.lgm88.top, port: 39400, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A土耳其02-广东移动, type: ss, server: a-teq02.lgm88.top, port: 34100, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B土耳其02-广州移动, type: ss, server: b-teq02.lgm88.top, port: 34101, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C土耳其02-杭州联通, type: ss, server: c-teq02.lgm88.top, port: 34100, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A波兰01-广东移动, type: ss, server: a-bolan01.lgm88.top, port: 34800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B波兰01-广州移动, type: ss, server: b-bolan01.lgm88.top, port: 34801, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C波兰01-杭州联通, type: ss, server: c-bolan01.lgm88.top, port: 34800, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A美国03-广东移动-ChatGPT, type: ss, server: a-us03.lgm88.top, port: 34826, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B美国03-ChatGPT-杭州联通, type: ss, server: b-us03.lgm88.top, port: 34826, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C美国03-ChatGPT-广州移动, type: ss, server: c-us03.lgm88.top, port: 34826, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A新加坡02-广东移动, type: ss, server: a-sgp02.lgm88.top, port: 16173, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C新加坡02-广州移动, type: ss, server: c-sgp02.lgm88.top, port: 16271, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A韩国01-广东移动, type: ss, server: a-hg01.lgm88.top, port: 24741, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B韩国01-杭州联通, type: ss, server: b-hg01.lgm88.top, port: 24741, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C韩国01-广州移动, type: ss, server: c-hg01.lgm88.top, port: 24741, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A香港03-杭州联通, type: ss, server: a-hk03.lgm88.top, port: 24843, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B香港03-广东移动, type: ss, server: b-hk03.lgm88.top, port: 24843, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C香港03-广州移动, type: ss, server: c-hk03.lgm88.top, port: 24843, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A越南02-广东移动, type: ss, server: a-vn02.lgm88.top, port: 24490, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B越南02-广州移动, type: ss, server: b-vn02.lgm88.top, port: 24490, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: D越南02-杭州联通, type: ss, server: d-vn02.lgm88.top, port: 24490, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A加拿大01-广东移动, type: ss, server: a-jnd01.lgm88.top, port: 25410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B加拿大01-广州移动, type: ss, server: b-jnd01.lgm88.top, port: 25410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: D加拿大01-杭州联通, type: ss, server: d-jnd01.lgm88.top, port: 25410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A德国01-杭州联通, type: ss, server: a-dg01.lgm88.top, port: 29440, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B德国01-广东移动, type: ss, server: b-dg01.lgm88.top, port: 29440, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: D德国01-广州移动, type: ss, server: d-dg01.lgm88.top, port: 29440, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A印度01-广东移动, type: ss, server: a-yd01.lgm88.top, port: 26450, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B印度01-广州移动, type: ss, server: b-yd01.lgm88.top, port: 27441, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A澳大利亚01-杭州联通, type: ss, server: a-adly01.lgm88.top, port: 27430, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B澳大利亚01-广东移动, type: ss, server: b-adly01.lgm88.top, port: 27430, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C澳大利亚01-广州移动, type: ss, server: c-adly01.lgm88.top, port: 27432, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A台湾01-广东移动, type: ss, server: a-tw01.lgm88.top, port: 24240, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B台湾01-杭州联通, type: ss, server: b-tw01.lgm88.top, port: 24240, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C台湾01-广州移动, type: ss, server: c-tw01.lgm88.top, port: 24242, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A荷兰01-广东移动, type: ss, server: a-helan01.lgm88.top, port: 34470, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B荷兰01-杭州联通, type: ss, server: b-helan01.lgm88.top, port: 34470, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C荷兰01-广州移动, type: ss, server: c-helan01.lgm88.top, port: 34472, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A阿根廷01-广东移动, type: ss, server: a-agt01.lgm88.top, port: 37410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B阿根廷01-广州移动, type: ss, server: b-agt01.lgm88.top, port: 37410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C阿根廷01-杭州联通, type: ss, server: c-agt01.lgm88.top, port: 37410, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A迪拜01-广东移动, type: ss, server: a-db01.lgm88.top, port: 37415, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B迪拜01-杭州联通, type: ss, server: b-db01.lgm88.top, port: 37415, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C迪拜01-广州移动, type: ss, server: c-db01.lgm88.top, port: 37417, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A俄罗斯01-广东移动, type: ss, server: a-els01.lgm88.top, port: 37420, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B俄罗斯01-杭州联通, type: ss, server: b-els01.lgm88.top, port: 37420, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C俄罗斯01-广州移动, type: ss, server: c-els01.lgm88.top, port: 37422, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A英国01-广东移动, type: ss, server: a-uk01.lgm88.top, port: 36425, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B英国01-杭州联通, type: ss, server: b-uk01.lgm88.top, port: 36425, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C英国01-广州移动, type: ss, server: c-uk01.lgm88.top, port: 36425, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A土耳其01-广东移动, type: ss, server: a-teq01.lgm88.top, port: 24568, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: B土耳其01-杭州联通, type: ss, server: b-teq01.lgm88.top, port: 24568, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: C土耳其01-广州移动, type: ss, server: c-teq01.lgm88.top, port: 24566, cipher: chacha20-ietf-poly1305, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true }
-    - { name: A马来西亚02-广东移动, type: trojan, server: a-mlxy02.lgm88.top, port: 24410, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: mlxy02.lgm88.top, skip-cert-verify: true }
-    - { name: B马来西亚02-杭州联通, type: trojan, server: b-mlxy02.lgm88.top, port: 24410, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: mlxy02.lgm88.top, skip-cert-verify: true }
-    - { name: C马来西亚02-广州移动-ChatGPT, type: trojan, server: c-mlxy02.lgm88.top, port: 24410, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: mlxy02.lgm88.top, skip-cert-verify: true }
-    - { name: A泰国01-广东移动, type: trojan, server: a-tg01.lgm88.top, port: 25461, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: tg01.lgm88.top, skip-cert-verify: true }
-    - { name: B泰国01-杭州联通, type: trojan, server: b-tg01.lgm88.top, port: 25461, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: tg01.lgm88.top, skip-cert-verify: true }
-    - { name: C泰国01-广州移动, type: trojan, server: c-tg01.lgm88.top, port: 25464, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: tg01.lgm88.top, skip-cert-verify: true }
-    - { name: A印尼01-广东移动, type: trojan, server: a-yn01.lgm88.top, port: 24461, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: yn01.lgm88.top, skip-cert-verify: true }
-    - { name: B印尼01-杭州联通, type: trojan, server: b-yn01.lgm88.top, port: 24461, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: yn01.lgm88.top, skip-cert-verify: true }
-    - { name: C印尼01-广州移动, type: trojan, server: c-yn01.lgm88.top, port: 24463, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: yn01.lgm88.top, skip-cert-verify: true }
-    - { name: A香港01-广东移动, type: trojan, server: a-hk01.lgm88.top, port: 11195, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: hk01.lgm88.top, skip-cert-verify: true }
-    - { name: B香港01-广州移动, type: trojan, server: b-hk01.lgm88.top, port: 24569, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: hk01.lgm88.top, skip-cert-verify: true }
-    - { name: C香港01-杭州联通, type: trojan, server: c-hk01.lgm88.top, port: 41242, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: hk01.lgm88.top, skip-cert-verify: true }
-    - { name: anyhk香港01-只能在中国大陆以外使用, type: trojan, server: hk01.lgm88.top, port: 10013, password: 01889d96-4b7c-4dc3-9fbe-e8b525655cf9, udp: true, sni: hk01.lgm88.top, skip-cert-verify: true }
+  - {"name":"Game 韩国01-标准","type":"ss","server":"201201level3.unclemanco.com","port":"803","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国02-标准","type":"ss","server":"201201level3.unclemanco.com","port":"806","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国03-标准","type":"ss","server":"201201level3.unclemanco.com","port":"913","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国04-标准","type":"ss","server":"201201level3.unclemanco.com","port":"817","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国05-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9030","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国06-标准","type":"ss","server":"201201level3.unclemanco.com","port":"920","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国07-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9035","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国08-通用","type":"ss","server":"201201level3.unclemanco.com","port":"917","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国09-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9019","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国10-原生","type":"ss","server":"201201level3.unclemanco.com","port":"9001","cipher":"aes-128-gcm","password":"ayucew2","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国11-国际","type":"ss","server":"201201level3.unclemanco.com","port":"807","cipher":"aes-128-gcm","password":"ayuclsaa","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国12-原生","type":"ss","server":"201201level3.unclemanco.com","port":"810","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 韩国13-标准","type":"ss","server":"201201level3.unclemanco.com","port":"921","cipher":"aes-128-gcm","password":"ayucl243113","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 台湾01-标准","type":"ss","server":"201201level3.unclemanco.com","port":"919","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 台湾02-标准","type":"ss","server":"201201level3.unclemanco.com","port":"825","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 台湾03-专线","type":"ss","server":"201201level3.unclemanco.com","port":"834","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 台湾04-标准","type":"ss","server":"201201level3.unclemanco.com","port":"908","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 台湾05-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9040","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 台湾06-标准","type":"ss","server":"201201level3.unclemanco.com","port":"835","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 台湾07-标准","type":"ss","server":"201201level3.unclemanco.com","port":"905","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 台湾08-原生","type":"ss","server":"201201level3.unclemanco.com","port":"904","cipher":"aes-128-gcm","password":"a12cloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 香港01-标准","type":"ss","server":"201201level3.unclemanco.com","port":"824","cipher":"aes-128-gcm","password":"ayu1245","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 香港02-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9054","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 香港03-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9063","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 香港04-国际","type":"ss","server":"201201level3.unclemanco.com","port":"20012","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 香港05-标准","type":"ss","server":"201201level3.unclemanco.com","port":"907","cipher":"aes-128-gcm","password":"ayucles1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 香港06-标准","type":"ss","server":"201201level3.unclemanco.com","port":"823","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本01-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9059","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本02-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9062","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本03-标准","type":"ss","server":"201201level3.unclemanco.com","port":"819","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本04-原生","type":"ss","server":"201201level3.unclemanco.com","port":"9021","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本05-原生","type":"ss","server":"201201level3.unclemanco.com","port":"914","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本06-标准","type":"ss","server":"201201level3.unclemanco.com","port":"909","cipher":"aes-128-gcm","password":"ayu1245","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本07-标准","type":"ss","server":"201201level3.unclemanco.com","port":"918","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本08-标准","type":"ss","server":"201201level3.unclemanco.com","port":"811","cipher":"aes-128-gcm","password":"ay2dsd1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本09-专线","type":"ss","server":"201201level3.unclemanco.com","port":"1313","cipher":"aes-128-gcm","password":"fjlfjafl231303831","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 日本10-标准","type":"ss","server":"201201level3.unclemanco.com","port":"901","cipher":"aes-128-gcm","password":"ay21d1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 美国01-原生","type":"ss","server":"201201level3.unclemanco.com","port":"9873","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 美国02-原生","type":"ss","server":"201201level3.unclemanco.com","port":"821","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 美国03-标准","type":"ss","server":"201201level3.unclemanco.com","port":"903","cipher":"aes-128-gcm","password":"ay2l23ud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 美国04-通用","type":"ss","server":"201201level3.unclemanco.com","port":"910","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 美国05-标准","type":"ss","server":"201201level3.unclemanco.com","port":"906","cipher":"aes-128-gcm","password":"ay2loud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 新加坡01-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9060","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 新加坡02-标准","type":"ss","server":"201201level3.unclemanco.com","port":"9037","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 新加坡03-标准","type":"ss","server":"201201level3.unclemanco.com","port":"902","cipher":"aes-128-gcm","password":"ayuc211","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Game 俄罗斯01-标准","type":"ss","server":"201201level3.unclemanco.com","port":"37863","cipher":"aes-128-gcm","password":"dajkdkjda&dja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 韩国 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"804","cipher":"aes-128-gcm","password":"wedsa","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 台湾 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"9048","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 台湾 B-原生","type":"ss","server":"201201level2.unclemanco.com","port":"9022","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 台湾 C-原生","type":"ss","server":"201201level2.unclemanco.com","port":"916","cipher":"aes-128-gcm","password":"fsfal2","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 台湾 E-解锁","type":"ss","server":"201201level2.unclemanco.com","port":"39004","cipher":"aes-128-gcm","password":"ayds23sd1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 台湾 D-标准","type":"ss","server":"201201level2.unclemanco.com","port":"926","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 香港 A-解锁","type":"ss","server":"201201level2.unclemanco.com","port":"9053","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 香港 B-标准","type":"ss","server":"201201level2.unclemanco.com","port":"8001","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 香港 C-标准","type":"ss","server":"201201level2.unclemanco.com","port":"9052","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 日本 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"818","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 日本 B-解锁","type":"ss","server":"201201level2.unclemanco.com","port":"813","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 日本 C-原生","type":"ss","server":"201201level2.unclemanco.com","port":"4321","cipher":"aes-128-gcm","password":"ay232sffssd1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 美国 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"820","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 美国 B-解锁","type":"ss","server":"201201level2.unclemanco.com","port":"809","cipher":"aes-128-gcm","password":"ayucjrsll","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 美国 C-原生","type":"ss","server":"201201level2.unclemanco.com","port":"911","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 美国 D-原生","type":"ss","server":"201201levelx.unclemanco.com","port":"857","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 智利 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"2201","cipher":"aes-128-gcm","password":"dajsdkdkjda&dja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 丹麦 A-原生","type":"ss","server":"201201level2.unclemanco.com","port":"39201","cipher":"aes-128-gcm","password":"dadk2jat*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 巴西 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"2789","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 新加坡 A-解锁","type":"ss","server":"201201level2.unclemanco.com","port":"9038","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 新加坡 B-标准","type":"ss","server":"201201level2.unclemanco.com","port":"19999","cipher":"aes-128-gcm","password":"dajkdkjda&dja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 土耳其 A-通用","type":"ss","server":"201201level2.unclemanco.com","port":"3033","cipher":"aes-128-gcm","password":"ayugfsd","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 俄罗斯 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"1549","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 阿根廷 A-原生","type":"ss","server":"201201level2.unclemanco.com","port":"6041","cipher":"aes-128-gcm","password":"ayds232sffssd1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 菲律宾 A-原生","type":"ss","server":"201201level2.unclemanco.com","port":"44444","cipher":"aes-128-gcm","password":"ayds232sffssd1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 匈牙利 A-原生","type":"ss","server":"201201level2.unclemanco.com","port":"38011","cipher":"aes-128-gcm","password":"dajkdr&dja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 罗马利亚 A-下载","type":"ss","server":"201201level2.unclemanco.com","port":"10058","cipher":"aes-128-gcm","password":"2sa2/1a","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 摩尔多瓦 A- 原生","type":"ss","server":"201201level2.unclemanco.com","port":"37865","cipher":"aes-128-gcm","password":"dajkdkjdsa&dja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 保加利亚 A-原生","type":"ss","server":"201201level2.unclemanco.com","port":"39073","cipher":"aes-128-gcm","password":"dajkbgja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 阿布扎比 A- 标准","type":"ss","server":"201201level2.unclemanco.com","port":"38002","cipher":"aes-128-gcm","password":"dajkdkjdssa&dja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 塞浦路斯 A-原生","type":"ss","server":"201201level2.unclemanco.com","port":"36203","cipher":"aes-128-gcm","password":"Vdssf.mj/2Zr","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 沙特阿拉伯 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"6559","cipher":"aes-128-gcm","password":"dajkdkjda&dja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 阿曼 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"36454","cipher":"aes-128-gcm","password":"1mj21sr","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 巴林 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"36452","cipher":"aes-128-gcm","password":"1mj21sr","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Video 葡萄牙 A-标准","type":"ss","server":"201201level2.unclemanco.com","port":"36243","cipher":"aes-128-gcm","password":"Vdss1samj/2Zr","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 台湾 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"9047","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 香港 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"912","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 香港 II-通用","type":"ss","server":"201201level1.unclemanco.com","port":"840","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 日本 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"9051","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 美国 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"925","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 美国 II-通用","type":"ss","server":"201201level1.unclemanco.com","port":"812","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 美国 III-通用","type":"ss","server":"201201level1.unclemanco.com","port":"837","cipher":"aes-128-gcm","password":"ayucl12s1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 印度 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"816","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 法国 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"915","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 英国 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"2688","cipher":"aes-128-gcm","password":"fs23l/","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 波兰 I-标准","type":"ss","server":"201201level1.unclemanco.com","port":"2205","cipher":"aes-128-gcm","password":"dajkdkjda&dja*/?","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 俄罗斯 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"9020","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 加拿大 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"924","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 新加坡 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"6879","cipher":"aes-128-gcm","password":"ayucloud1","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 爱尔兰 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"36201","cipher":"aes-128-gcm","password":"Vdssf.mj/2Zr","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+  - {"name":"Web 澳大利亚 I-通用","type":"ss","server":"201201level1.unclemanco.com","port":"9044","cipher":"aes-128-gcm","password":"QHPy2u","udp":true,"plugin":"obfs","plugin-opts":{"mode":"http","host":"c2b0112369.download.windowsupdate.com"}}
+
 proxy-groups:
-    - { name: 雷公马, type: select, proxies: [自动选择, 故障转移, A美国04-杭州联通, B美国04-广东移动, E美国04-广州移动, A卢森堡01-杭州联通, A新加坡04-广东移动, B新加坡04-广州移动, C新加坡04-杭州联通, A美国05-广东移动, B美国05-杭州联通, D美国05-广州移动, A美国06-杭州联通, B美国06-广东移动, C美国06-广州移动, A日本07-杭州联通, B日本07-广东移动, C日本07-广州移动, A新加坡03-广东移动, B新加坡03-广州移动, C新加坡03-杭州联通, A日本03-杭州联通, B日本03-广东移动, C日本03-广州移动, A香港07-广东移动, B香港07-杭州联通, C香港07-广州移动, A瑞典01-广东移动, A新加坡01-杭州联通, A菲律宾01-杭州联通, A沙特阿拉伯01-杭州联通, A日本09-杭州联通, E日本09-广州移动, A日本01-杭州联通, B日本01-广东移动, C日本01-广州移动, A美国01-杭州联通, A台湾05-广州移动, A巴拿马01-广州移动, A智利01-广州移动, A爱尔兰01-广州移动, B爱尔兰01-广东移动, A瑞士01-广州移动, A英国02-广东移动-ChatGPT, B英国02-ChatGPT-广州移动, C英国02-ChatGPT-杭州联通, A印尼02-ChatGPT-广东移动, B印尼02-ChatGPT-广州移动, C印尼02-ChatGPT-杭州联通, A泰国02-广东移动, B泰国02-广州移动, C泰国02-杭州联通, A意大利01-广东移动, B意大利01-杭州联通, C意大利01-广州移动, A西班牙01-广东移动, B西班牙01-广州移动, D西班牙01-杭州联通, A乌克兰01-广东移动, C乌克兰01-广州移动, D乌克兰01-杭州联通, A拉脱维亚01-广东移动, C拉脱维亚01-广州移动, D拉脱维亚01-杭州联通, A芬兰01-广东移动, B芬兰01-广州移动, C芬兰01-杭州联通, A土耳其02-广东移动, B土耳其02-广州移动, C土耳其02-杭州联通, A波兰01-广东移动, B波兰01-广州移动, C波兰01-杭州联通, A美国03-广东移动-ChatGPT, B美国03-ChatGPT-杭州联通, C美国03-ChatGPT-广州移动, A新加坡02-广东移动, C新加坡02-广州移动, A韩国01-广东移动, B韩国01-杭州联通, C韩国01-广州移动, A香港03-杭州联通, B香港03-广东移动, C香港03-广州移动, A越南02-广东移动, B越南02-广州移动, D越南02-杭州联通, A加拿大01-广东移动, B加拿大01-广州移动, D加拿大01-杭州联通, A德国01-杭州联通, B德国01-广东移动, D德国01-广州移动, A印度01-广东移动, B印度01-广州移动, A澳大利亚01-杭州联通, B澳大利亚01-广东移动, C澳大利亚01-广州移动, A台湾01-广东移动, B台湾01-杭州联通, C台湾01-广州移动, A荷兰01-广东移动, B荷兰01-杭州联通, C荷兰01-广州移动, A阿根廷01-广东移动, B阿根廷01-广州移动, C阿根廷01-杭州联通, A迪拜01-广东移动, B迪拜01-杭州联通, C迪拜01-广州移动, A俄罗斯01-广东移动, B俄罗斯01-杭州联通, C俄罗斯01-广州移动, A英国01-广东移动, B英国01-杭州联通, C英国01-广州移动, A土耳其01-广东移动, B土耳其01-杭州联通, C土耳其01-广州移动, A马来西亚02-广东移动, B马来西亚02-杭州联通, C马来西亚02-广州移动-ChatGPT, A泰国01-广东移动, B泰国01-杭州联通, C泰国01-广州移动, A印尼01-广东移动, B印尼01-杭州联通, C印尼01-广州移动, A香港01-广东移动, B香港01-广州移动, C香港01-杭州联通, anyhk香港01-只能在中国大陆以外使用] }
-    - { name: 自动选择, type: url-test, proxies: [A美国04-杭州联通, B美国04-广东移动, E美国04-广州移动, A卢森堡01-杭州联通, A新加坡04-广东移动, B新加坡04-广州移动, C新加坡04-杭州联通, A美国05-广东移动, B美国05-杭州联通, D美国05-广州移动, A美国06-杭州联通, B美国06-广东移动, C美国06-广州移动, A日本07-杭州联通, B日本07-广东移动, C日本07-广州移动, A新加坡03-广东移动, B新加坡03-广州移动, C新加坡03-杭州联通, A日本03-杭州联通, B日本03-广东移动, C日本03-广州移动, A香港07-广东移动, B香港07-杭州联通, C香港07-广州移动, A瑞典01-广东移动, A新加坡01-杭州联通, A菲律宾01-杭州联通, A沙特阿拉伯01-杭州联通, A日本09-杭州联通, E日本09-广州移动, A日本01-杭州联通, B日本01-广东移动, C日本01-广州移动, A美国01-杭州联通, A台湾05-广州移动, A巴拿马01-广州移动, A智利01-广州移动, A爱尔兰01-广州移动, B爱尔兰01-广东移动, A瑞士01-广州移动, A英国02-广东移动-ChatGPT, B英国02-ChatGPT-广州移动, C英国02-ChatGPT-杭州联通, A印尼02-ChatGPT-广东移动, B印尼02-ChatGPT-广州移动, C印尼02-ChatGPT-杭州联通, A泰国02-广东移动, B泰国02-广州移动, C泰国02-杭州联通, A意大利01-广东移动, B意大利01-杭州联通, C意大利01-广州移动, A西班牙01-广东移动, B西班牙01-广州移动, D西班牙01-杭州联通, A乌克兰01-广东移动, C乌克兰01-广州移动, D乌克兰01-杭州联通, A拉脱维亚01-广东移动, C拉脱维亚01-广州移动, D拉脱维亚01-杭州联通, A芬兰01-广东移动, B芬兰01-广州移动, C芬兰01-杭州联通, A土耳其02-广东移动, B土耳其02-广州移动, C土耳其02-杭州联通, A波兰01-广东移动, B波兰01-广州移动, C波兰01-杭州联通, A美国03-广东移动-ChatGPT, B美国03-ChatGPT-杭州联通, C美国03-ChatGPT-广州移动, A新加坡02-广东移动, C新加坡02-广州移动, A韩国01-广东移动, B韩国01-杭州联通, C韩国01-广州移动, A香港03-杭州联通, B香港03-广东移动, C香港03-广州移动, A越南02-广东移动, B越南02-广州移动, D越南02-杭州联通, A加拿大01-广东移动, B加拿大01-广州移动, D加拿大01-杭州联通, A德国01-杭州联通, B德国01-广东移动, D德国01-广州移动, A印度01-广东移动, B印度01-广州移动, A澳大利亚01-杭州联通, B澳大利亚01-广东移动, C澳大利亚01-广州移动, A台湾01-广东移动, B台湾01-杭州联通, C台湾01-广州移动, A荷兰01-广东移动, B荷兰01-杭州联通, C荷兰01-广州移动, A阿根廷01-广东移动, B阿根廷01-广州移动, C阿根廷01-杭州联通, A迪拜01-广东移动, B迪拜01-杭州联通, C迪拜01-广州移动, A俄罗斯01-广东移动, B俄罗斯01-杭州联通, C俄罗斯01-广州移动, A英国01-广东移动, B英国01-杭州联通, C英国01-广州移动, A土耳其01-广东移动, B土耳其01-杭州联通, C土耳其01-广州移动, A马来西亚02-广东移动, B马来西亚02-杭州联通, C马来西亚02-广州移动-ChatGPT, A泰国01-广东移动, B泰国01-杭州联通, C泰国01-广州移动, A印尼01-广东移动, B印尼01-杭州联通, C印尼01-广州移动, A香港01-广东移动, B香港01-广州移动, C香港01-杭州联通, anyhk香港01-只能在中国大陆以外使用], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
-    - { name: 故障转移, type: fallback, proxies: [A美国04-杭州联通, B美国04-广东移动, E美国04-广州移动, A卢森堡01-杭州联通, A新加坡04-广东移动, B新加坡04-广州移动, C新加坡04-杭州联通, A美国05-广东移动, B美国05-杭州联通, D美国05-广州移动, A美国06-杭州联通, B美国06-广东移动, C美国06-广州移动, A日本07-杭州联通, B日本07-广东移动, C日本07-广州移动, A新加坡03-广东移动, B新加坡03-广州移动, C新加坡03-杭州联通, A日本03-杭州联通, B日本03-广东移动, C日本03-广州移动, A香港07-广东移动, B香港07-杭州联通, C香港07-广州移动, A瑞典01-广东移动, A新加坡01-杭州联通, A菲律宾01-杭州联通, A沙特阿拉伯01-杭州联通, A日本09-杭州联通, E日本09-广州移动, A日本01-杭州联通, B日本01-广东移动, C日本01-广州移动, A美国01-杭州联通, A台湾05-广州移动, A巴拿马01-广州移动, A智利01-广州移动, A爱尔兰01-广州移动, B爱尔兰01-广东移动, A瑞士01-广州移动, A英国02-广东移动-ChatGPT, B英国02-ChatGPT-广州移动, C英国02-ChatGPT-杭州联通, A印尼02-ChatGPT-广东移动, B印尼02-ChatGPT-广州移动, C印尼02-ChatGPT-杭州联通, A泰国02-广东移动, B泰国02-广州移动, C泰国02-杭州联通, A意大利01-广东移动, B意大利01-杭州联通, C意大利01-广州移动, A西班牙01-广东移动, B西班牙01-广州移动, D西班牙01-杭州联通, A乌克兰01-广东移动, C乌克兰01-广州移动, D乌克兰01-杭州联通, A拉脱维亚01-广东移动, C拉脱维亚01-广州移动, D拉脱维亚01-杭州联通, A芬兰01-广东移动, B芬兰01-广州移动, C芬兰01-杭州联通, A土耳其02-广东移动, B土耳其02-广州移动, C土耳其02-杭州联通, A波兰01-广东移动, B波兰01-广州移动, C波兰01-杭州联通, A美国03-广东移动-ChatGPT, B美国03-ChatGPT-杭州联通, C美国03-ChatGPT-广州移动, A新加坡02-广东移动, C新加坡02-广州移动, A韩国01-广东移动, B韩国01-杭州联通, C韩国01-广州移动, A香港03-杭州联通, B香港03-广东移动, C香港03-广州移动, A越南02-广东移动, B越南02-广州移动, D越南02-杭州联通, A加拿大01-广东移动, B加拿大01-广州移动, D加拿大01-杭州联通, A德国01-杭州联通, B德国01-广东移动, D德国01-广州移动, A印度01-广东移动, B印度01-广州移动, A澳大利亚01-杭州联通, B澳大利亚01-广东移动, C澳大利亚01-广州移动, A台湾01-广东移动, B台湾01-杭州联通, C台湾01-广州移动, A荷兰01-广东移动, B荷兰01-杭州联通, C荷兰01-广州移动, A阿根廷01-广东移动, B阿根廷01-广州移动, C阿根廷01-杭州联通, A迪拜01-广东移动, B迪拜01-杭州联通, C迪拜01-广州移动, A俄罗斯01-广东移动, B俄罗斯01-杭州联通, C俄罗斯01-广州移动, A英国01-广东移动, B英国01-杭州联通, C英国01-广州移动, A土耳其01-广东移动, B土耳其01-杭州联通, C土耳其01-广州移动, A马来西亚02-广东移动, B马来西亚02-杭州联通, C马来西亚02-广州移动-ChatGPT, A泰国01-广东移动, B泰国01-杭州联通, C泰国01-广州移动, A印尼01-广东移动, B印尼01-杭州联通, C印尼01-广州移动, A香港01-广东移动, B香港01-广州移动, C香港01-杭州联通, anyhk香港01-只能在中国大陆以外使用], url: 'http://www.gstatic.com/generate_204', interval: 7200 }
+-
+  name: Proxy
+  type: select
+  proxies:
+    - 'Game 韩国01-标准'
+    - 'Game 韩国02-标准'
+    - 'Game 韩国03-标准'
+    - 'Game 韩国04-标准'
+    - 'Game 韩国05-标准'
+    - 'Game 韩国06-标准'
+    - 'Game 韩国07-标准'
+    - 'Game 韩国08-通用'
+    - 'Game 韩国09-标准'
+    - 'Game 韩国10-原生'
+    - 'Game 韩国11-国际'
+    - 'Game 韩国12-原生'
+    - 'Game 韩国13-标准'
+    - 'Game 台湾01-标准'
+    - 'Game 台湾02-标准'
+    - 'Game 台湾03-专线'
+    - 'Game 台湾04-标准'
+    - 'Game 台湾05-标准'
+    - 'Game 台湾06-标准'
+    - 'Game 台湾07-标准'
+    - 'Game 台湾08-原生'
+    - 'Game 香港01-标准'
+    - 'Game 香港02-标准'
+    - 'Game 香港03-标准'
+    - 'Game 香港04-国际'
+    - 'Game 香港05-标准'
+    - 'Game 香港06-标准'
+    - 'Game 日本01-标准'
+    - 'Game 日本02-标准'
+    - 'Game 日本03-标准'
+    - 'Game 日本04-原生'
+    - 'Game 日本05-原生'
+    - 'Game 日本06-标准'
+    - 'Game 日本07-标准'
+    - 'Game 日本08-标准'
+    - 'Game 日本09-专线'
+    - 'Game 日本10-标准'
+    - 'Game 美国01-原生'
+    - 'Game 美国02-原生'
+    - 'Game 美国03-标准'
+    - 'Game 美国04-通用'
+    - 'Game 美国05-标准'
+    - 'Game 新加坡01-标准'
+    - 'Game 新加坡02-标准'
+    - 'Game 新加坡03-标准'
+    - 'Game 俄罗斯01-标准'
+    - 'Video 韩国 A-标准'
+    - 'Video 台湾 A-标准'
+    - 'Video 台湾 B-原生'
+    - 'Video 台湾 C-原生'
+    - 'Video 台湾 E-解锁'
+    - 'Video 台湾 D-标准'
+    - 'Video 香港 A-解锁'
+    - 'Video 香港 B-标准'
+    - 'Video 香港 C-标准'
+    - 'Video 日本 A-标准'
+    - 'Video 日本 B-解锁'
+    - 'Video 日本 C-原生'
+    - 'Video 美国 A-标准'
+    - 'Video 美国 B-解锁'
+    - 'Video 美国 C-原生'
+    - 'Video 美国 D-原生'
+    - 'Video 智利 A-标准'
+    - 'Video 丹麦 A-原生'
+    - 'Video 巴西 A-标准'
+    - 'Video 新加坡 A-解锁'
+    - 'Video 新加坡 B-标准'
+    - 'Video 土耳其 A-通用'
+    - 'Video 俄罗斯 A-标准'
+    - 'Video 阿根廷 A-原生'
+    - 'Video 菲律宾 A-原生'
+    - 'Video 匈牙利 A-原生'
+    - 'Video 罗马利亚 A-下载'
+    - 'Video 摩尔多瓦 A- 原生'
+    - 'Video 保加利亚 A-原生'
+    - 'Video 阿布扎比 A- 标准'
+    - 'Video 塞浦路斯 A-原生'
+    - 'Video 沙特阿拉伯 A-标准'
+    - 'Video 阿曼 A-标准'
+    - 'Video 巴林 A-标准'
+    - 'Video 葡萄牙 A-标准'
+    - 'Web 台湾 I-通用'
+    - 'Web 香港 I-通用'
+    - 'Web 香港 II-通用'
+    - 'Web 日本 I-通用'
+    - 'Web 美国 I-通用'
+    - 'Web 美国 II-通用'
+    - 'Web 美国 III-通用'
+    - 'Web 印度 I-通用'
+    - 'Web 法国 I-通用'
+    - 'Web 英国 I-通用'
+    - 'Web 波兰 I-标准'
+    - 'Web 俄罗斯 I-通用'
+    - 'Web 加拿大 I-通用'
+    - 'Web 新加坡 I-通用'
+    - 'Web 爱尔兰 I-通用'
+    - 'Web 澳大利亚 I-通用'
+-
+  name: Domestic
+  type: select
+  proxies:
+    - DIRECT
+    - Proxy
+-
+  name: AsianTV
+  type: select
+  proxies:
+    - Domestic
+    - Proxy
+-
+  name: GlobalTV
+  type: select
+  proxies:
+    - Proxy
+-
+  name: Others
+  type: select
+  proxies:
+    - Proxy
+    - Domestic
+
+
+# 规则
 rules:
-    - 'DOMAIN,hd8.lgm99.com,DIRECT'
-    - 'DOMAIN-SUFFIX,services.googleapis.cn,雷公马'
-    - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,雷公马'
-    - 'DOMAIN,safebrowsing.urlsec.qq.com,DIRECT'
-    - 'DOMAIN,safebrowsing.googleapis.com,DIRECT'
-    - 'DOMAIN,developer.apple.com,雷公马'
-    - 'DOMAIN-SUFFIX,digicert.com,雷公马'
-    - 'DOMAIN,ocsp.apple.com,雷公马'
-    - 'DOMAIN,ocsp.comodoca.com,雷公马'
-    - 'DOMAIN,ocsp.usertrust.com,雷公马'
-    - 'DOMAIN,ocsp.sectigo.com,雷公马'
-    - 'DOMAIN,ocsp.verisign.net,雷公马'
-    - 'DOMAIN-SUFFIX,apple-dns.net,雷公马'
-    - 'DOMAIN,testflight.apple.com,雷公马'
-    - 'DOMAIN,sandbox.itunes.apple.com,雷公马'
-    - 'DOMAIN,itunes.apple.com,雷公马'
-    - 'DOMAIN-SUFFIX,apps.apple.com,雷公马'
-    - 'DOMAIN-SUFFIX,blobstore.apple.com,雷公马'
-    - 'DOMAIN,cvws.icloud-content.com,雷公马'
-    - 'DOMAIN-SUFFIX,mzstatic.com,DIRECT'
-    - 'DOMAIN-SUFFIX,itunes.apple.com,DIRECT'
-    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
-    - 'DOMAIN-SUFFIX,icloud-content.com,DIRECT'
-    - 'DOMAIN-SUFFIX,me.com,DIRECT'
-    - 'DOMAIN-SUFFIX,aaplimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,cdn20.com,DIRECT'
-    - 'DOMAIN-SUFFIX,cdn-apple.com,DIRECT'
-    - 'DOMAIN-SUFFIX,akadns.net,DIRECT'
-    - 'DOMAIN-SUFFIX,akamaiedge.net,DIRECT'
-    - 'DOMAIN-SUFFIX,edgekey.net,DIRECT'
-    - 'DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT'
-    - 'DOMAIN-SUFFIX,mwcname.com,DIRECT'
-    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
-    - 'DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT'
-    - 'DOMAIN-SUFFIX,apple-mapkit.com,DIRECT'
-    - 'DOMAIN-SUFFIX,126.com,DIRECT'
-    - 'DOMAIN-SUFFIX,126.net,DIRECT'
-    - 'DOMAIN-SUFFIX,127.net,DIRECT'
-    - 'DOMAIN-SUFFIX,163.com,DIRECT'
-    - 'DOMAIN-SUFFIX,360buyimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,36kr.com,DIRECT'
-    - 'DOMAIN-SUFFIX,acfun.tv,DIRECT'
-    - 'DOMAIN-SUFFIX,air-matters.com,DIRECT'
-    - 'DOMAIN-SUFFIX,aixifan.com,DIRECT'
-    - 'DOMAIN-KEYWORD,alicdn,DIRECT'
-    - 'DOMAIN-KEYWORD,alipay,DIRECT'
-    - 'DOMAIN-KEYWORD,taobao,DIRECT'
-    - 'DOMAIN-SUFFIX,amap.com,DIRECT'
-    - 'DOMAIN-SUFFIX,autonavi.com,DIRECT'
-    - 'DOMAIN-KEYWORD,baidu,DIRECT'
-    - 'DOMAIN-SUFFIX,bdimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,bdstatic.com,DIRECT'
-    - 'DOMAIN-SUFFIX,bilibili.com,DIRECT'
-    - 'DOMAIN-SUFFIX,bilivideo.com,DIRECT'
-    - 'DOMAIN-SUFFIX,caiyunapp.com,DIRECT'
-    - 'DOMAIN-SUFFIX,clouddn.com,DIRECT'
-    - 'DOMAIN-SUFFIX,cnbeta.com,DIRECT'
-    - 'DOMAIN-SUFFIX,cnbetacdn.com,DIRECT'
-    - 'DOMAIN-SUFFIX,cootekservice.com,DIRECT'
-    - 'DOMAIN-SUFFIX,csdn.net,DIRECT'
-    - 'DOMAIN-SUFFIX,ctrip.com,DIRECT'
-    - 'DOMAIN-SUFFIX,dgtle.com,DIRECT'
-    - 'DOMAIN-SUFFIX,dianping.com,DIRECT'
-    - 'DOMAIN-SUFFIX,douban.com,DIRECT'
-    - 'DOMAIN-SUFFIX,doubanio.com,DIRECT'
-    - 'DOMAIN-SUFFIX,duokan.com,DIRECT'
-    - 'DOMAIN-SUFFIX,easou.com,DIRECT'
-    - 'DOMAIN-SUFFIX,ele.me,DIRECT'
-    - 'DOMAIN-SUFFIX,feng.com,DIRECT'
-    - 'DOMAIN-SUFFIX,fir.im,DIRECT'
-    - 'DOMAIN-SUFFIX,frdic.com,DIRECT'
-    - 'DOMAIN-SUFFIX,g-cores.com,DIRECT'
-    - 'DOMAIN-SUFFIX,godic.net,DIRECT'
-    - 'DOMAIN-SUFFIX,gtimg.com,DIRECT'
-    - 'DOMAIN,cdn.hockeyapp.net,DIRECT'
-    - 'DOMAIN-SUFFIX,hongxiu.com,DIRECT'
-    - 'DOMAIN-SUFFIX,hxcdn.net,DIRECT'
-    - 'DOMAIN-SUFFIX,iciba.com,DIRECT'
-    - 'DOMAIN-SUFFIX,ifeng.com,DIRECT'
-    - 'DOMAIN-SUFFIX,ifengimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,ipip.net,DIRECT'
-    - 'DOMAIN-SUFFIX,iqiyi.com,DIRECT'
-    - 'DOMAIN-SUFFIX,jd.com,DIRECT'
-    - 'DOMAIN-SUFFIX,jianshu.com,DIRECT'
-    - 'DOMAIN-SUFFIX,knewone.com,DIRECT'
-    - 'DOMAIN-SUFFIX,le.com,DIRECT'
-    - 'DOMAIN-SUFFIX,lecloud.com,DIRECT'
-    - 'DOMAIN-SUFFIX,lemicp.com,DIRECT'
-    - 'DOMAIN-SUFFIX,licdn.com,DIRECT'
-    - 'DOMAIN-SUFFIX,luoo.net,DIRECT'
-    - 'DOMAIN-SUFFIX,meituan.com,DIRECT'
-    - 'DOMAIN-SUFFIX,meituan.net,DIRECT'
-    - 'DOMAIN-SUFFIX,mi.com,DIRECT'
-    - 'DOMAIN-SUFFIX,miaopai.com,DIRECT'
-    - 'DOMAIN-SUFFIX,microsoft.com,DIRECT'
-    - 'DOMAIN-SUFFIX,microsoftonline.com,DIRECT'
-    - 'DOMAIN-SUFFIX,miui.com,DIRECT'
-    - 'DOMAIN-SUFFIX,miwifi.com,DIRECT'
-    - 'DOMAIN-SUFFIX,mob.com,DIRECT'
-    - 'DOMAIN-SUFFIX,netease.com,DIRECT'
-    - 'DOMAIN-SUFFIX,office.com,DIRECT'
-    - 'DOMAIN-SUFFIX,office365.com,DIRECT'
-    - 'DOMAIN-KEYWORD,officecdn,DIRECT'
-    - 'DOMAIN-SUFFIX,oschina.net,DIRECT'
-    - 'DOMAIN-SUFFIX,ppsimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,pstatp.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qcloud.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qdaily.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qdmm.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qhimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qhres.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qidian.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qihucdn.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qiniu.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qiniucdn.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qiyipic.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qq.com,DIRECT'
-    - 'DOMAIN-SUFFIX,qqurl.com,DIRECT'
-    - 'DOMAIN-SUFFIX,rarbg.to,DIRECT'
-    - 'DOMAIN-SUFFIX,ruguoapp.com,DIRECT'
-    - 'DOMAIN-SUFFIX,segmentfault.com,DIRECT'
-    - 'DOMAIN-SUFFIX,sinaapp.com,DIRECT'
-    - 'DOMAIN-SUFFIX,smzdm.com,DIRECT'
-    - 'DOMAIN-SUFFIX,snapdrop.net,DIRECT'
-    - 'DOMAIN-SUFFIX,sogou.com,DIRECT'
-    - 'DOMAIN-SUFFIX,sogoucdn.com,DIRECT'
-    - 'DOMAIN-SUFFIX,sohu.com,DIRECT'
-    - 'DOMAIN-SUFFIX,soku.com,DIRECT'
-    - 'DOMAIN-SUFFIX,speedtest.net,DIRECT'
-    - 'DOMAIN-SUFFIX,sspai.com,DIRECT'
-    - 'DOMAIN-SUFFIX,suning.com,DIRECT'
-    - 'DOMAIN-SUFFIX,taobao.com,DIRECT'
-    - 'DOMAIN-SUFFIX,tencent.com,DIRECT'
-    - 'DOMAIN-SUFFIX,tenpay.com,DIRECT'
-    - 'DOMAIN-SUFFIX,tianyancha.com,DIRECT'
-    - 'DOMAIN-SUFFIX,tmall.com,DIRECT'
-    - 'DOMAIN-SUFFIX,tudou.com,DIRECT'
-    - 'DOMAIN-SUFFIX,umetrip.com,DIRECT'
-    - 'DOMAIN-SUFFIX,upaiyun.com,DIRECT'
-    - 'DOMAIN-SUFFIX,upyun.com,DIRECT'
-    - 'DOMAIN-SUFFIX,veryzhun.com,DIRECT'
-    - 'DOMAIN-SUFFIX,weather.com,DIRECT'
-    - 'DOMAIN-SUFFIX,weibo.com,DIRECT'
-    - 'DOMAIN-SUFFIX,xiami.com,DIRECT'
-    - 'DOMAIN-SUFFIX,xiami.net,DIRECT'
-    - 'DOMAIN-SUFFIX,xiaomicp.com,DIRECT'
-    - 'DOMAIN-SUFFIX,ximalaya.com,DIRECT'
-    - 'DOMAIN-SUFFIX,xmcdn.com,DIRECT'
-    - 'DOMAIN-SUFFIX,xunlei.com,DIRECT'
-    - 'DOMAIN-SUFFIX,yhd.com,DIRECT'
-    - 'DOMAIN-SUFFIX,yihaodianimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,yinxiang.com,DIRECT'
-    - 'DOMAIN-SUFFIX,ykimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,youdao.com,DIRECT'
-    - 'DOMAIN-SUFFIX,youku.com,DIRECT'
-    - 'DOMAIN-SUFFIX,zealer.com,DIRECT'
-    - 'DOMAIN-SUFFIX,zhihu.com,DIRECT'
-    - 'DOMAIN-SUFFIX,zhimg.com,DIRECT'
-    - 'DOMAIN-SUFFIX,zimuzu.tv,DIRECT'
-    - 'DOMAIN-SUFFIX,zoho.com,DIRECT'
-    - 'DOMAIN-KEYWORD,amazon,雷公马'
-    - 'DOMAIN-KEYWORD,google,雷公马'
-    - 'DOMAIN-KEYWORD,gmail,雷公马'
-    - 'DOMAIN-KEYWORD,youtube,雷公马'
-    - 'DOMAIN-KEYWORD,facebook,雷公马'
-    - 'DOMAIN-SUFFIX,fb.me,雷公马'
-    - 'DOMAIN-SUFFIX,fbcdn.net,雷公马'
-    - 'DOMAIN-KEYWORD,twitter,雷公马'
-    - 'DOMAIN-KEYWORD,instagram,雷公马'
-    - 'DOMAIN-KEYWORD,dropbox,雷公马'
-    - 'DOMAIN-SUFFIX,twimg.com,雷公马'
-    - 'DOMAIN-KEYWORD,blogspot,雷公马'
-    - 'DOMAIN-SUFFIX,youtu.be,雷公马'
-    - 'DOMAIN-KEYWORD,whatsapp,雷公马'
-    - 'DOMAIN-KEYWORD,admarvel,REJECT'
-    - 'DOMAIN-KEYWORD,admaster,REJECT'
-    - 'DOMAIN-KEYWORD,adsage,REJECT'
-    - 'DOMAIN-KEYWORD,adsmogo,REJECT'
-    - 'DOMAIN-KEYWORD,adsrvmedia,REJECT'
-    - 'DOMAIN-KEYWORD,adwords,REJECT'
-    - 'DOMAIN-KEYWORD,adservice,REJECT'
-    - 'DOMAIN-SUFFIX,appsflyer.com,REJECT'
-    - 'DOMAIN-KEYWORD,domob,REJECT'
-    - 'DOMAIN-SUFFIX,doubleclick.net,REJECT'
-    - 'DOMAIN-KEYWORD,duomeng,REJECT'
-    - 'DOMAIN-KEYWORD,dwtrack,REJECT'
-    - 'DOMAIN-KEYWORD,guanggao,REJECT'
-    - 'DOMAIN-KEYWORD,lianmeng,REJECT'
-    - 'DOMAIN-SUFFIX,mmstat.com,REJECT'
-    - 'DOMAIN-KEYWORD,mopub,REJECT'
-    - 'DOMAIN-KEYWORD,omgmta,REJECT'
-    - 'DOMAIN-KEYWORD,openx,REJECT'
-    - 'DOMAIN-KEYWORD,partnerad,REJECT'
-    - 'DOMAIN-KEYWORD,pingfore,REJECT'
-    - 'DOMAIN-KEYWORD,supersonicads,REJECT'
-    - 'DOMAIN-KEYWORD,uedas,REJECT'
-    - 'DOMAIN-KEYWORD,umeng,REJECT'
-    - 'DOMAIN-KEYWORD,usage,REJECT'
-    - 'DOMAIN-SUFFIX,vungle.com,REJECT'
-    - 'DOMAIN-KEYWORD,wlmonitor,REJECT'
-    - 'DOMAIN-KEYWORD,zjtoolbar,REJECT'
-    - 'DOMAIN-SUFFIX,9to5mac.com,雷公马'
-    - 'DOMAIN-SUFFIX,abpchina.org,雷公马'
-    - 'DOMAIN-SUFFIX,adblockplus.org,雷公马'
-    - 'DOMAIN-SUFFIX,adobe.com,雷公马'
-    - 'DOMAIN-SUFFIX,akamaized.net,雷公马'
-    - 'DOMAIN-SUFFIX,alfredapp.com,雷公马'
-    - 'DOMAIN-SUFFIX,amplitude.com,雷公马'
-    - 'DOMAIN-SUFFIX,ampproject.org,雷公马'
-    - 'DOMAIN-SUFFIX,android.com,雷公马'
-    - 'DOMAIN-SUFFIX,angularjs.org,雷公马'
-    - 'DOMAIN-SUFFIX,aolcdn.com,雷公马'
-    - 'DOMAIN-SUFFIX,apkpure.com,雷公马'
-    - 'DOMAIN-SUFFIX,appledaily.com,雷公马'
-    - 'DOMAIN-SUFFIX,appshopper.com,雷公马'
-    - 'DOMAIN-SUFFIX,appspot.com,雷公马'
-    - 'DOMAIN-SUFFIX,arcgis.com,雷公马'
-    - 'DOMAIN-SUFFIX,archive.org,雷公马'
-    - 'DOMAIN-SUFFIX,armorgames.com,雷公马'
-    - 'DOMAIN-SUFFIX,aspnetcdn.com,雷公马'
-    - 'DOMAIN-SUFFIX,att.com,雷公马'
-    - 'DOMAIN-SUFFIX,awsstatic.com,雷公马'
-    - 'DOMAIN-SUFFIX,azureedge.net,雷公马'
-    - 'DOMAIN-SUFFIX,azurewebsites.net,雷公马'
-    - 'DOMAIN-SUFFIX,bing.com,雷公马'
-    - 'DOMAIN-SUFFIX,bintray.com,雷公马'
-    - 'DOMAIN-SUFFIX,bit.com,雷公马'
-    - 'DOMAIN-SUFFIX,bit.ly,雷公马'
-    - 'DOMAIN-SUFFIX,bitbucket.org,雷公马'
-    - 'DOMAIN-SUFFIX,bjango.com,雷公马'
-    - 'DOMAIN-SUFFIX,bkrtx.com,雷公马'
-    - 'DOMAIN-SUFFIX,blog.com,雷公马'
-    - 'DOMAIN-SUFFIX,blogcdn.com,雷公马'
-    - 'DOMAIN-SUFFIX,blogger.com,雷公马'
-    - 'DOMAIN-SUFFIX,blogsmithmedia.com,雷公马'
-    - 'DOMAIN-SUFFIX,blogspot.com,雷公马'
-    - 'DOMAIN-SUFFIX,blogspot.hk,雷公马'
-    - 'DOMAIN-SUFFIX,bloomberg.com,雷公马'
-    - 'DOMAIN-SUFFIX,box.com,雷公马'
-    - 'DOMAIN-SUFFIX,box.net,雷公马'
-    - 'DOMAIN-SUFFIX,cachefly.net,雷公马'
-    - 'DOMAIN-SUFFIX,chromium.org,雷公马'
-    - 'DOMAIN-SUFFIX,cl.ly,雷公马'
-    - 'DOMAIN-SUFFIX,cloudflare.com,雷公马'
-    - 'DOMAIN-SUFFIX,cloudfront.net,雷公马'
-    - 'DOMAIN-SUFFIX,cloudmagic.com,雷公马'
-    - 'DOMAIN-SUFFIX,cmail19.com,雷公马'
-    - 'DOMAIN-SUFFIX,cnet.com,雷公马'
-    - 'DOMAIN-SUFFIX,cocoapods.org,雷公马'
-    - 'DOMAIN-SUFFIX,comodoca.com,雷公马'
-    - 'DOMAIN-SUFFIX,crashlytics.com,雷公马'
-    - 'DOMAIN-SUFFIX,culturedcode.com,雷公马'
-    - 'DOMAIN-SUFFIX,d.pr,雷公马'
-    - 'DOMAIN-SUFFIX,danilo.to,雷公马'
-    - 'DOMAIN-SUFFIX,dayone.me,雷公马'
-    - 'DOMAIN-SUFFIX,db.tt,雷公马'
-    - 'DOMAIN-SUFFIX,deskconnect.com,雷公马'
-    - 'DOMAIN-SUFFIX,disq.us,雷公马'
-    - 'DOMAIN-SUFFIX,disqus.com,雷公马'
-    - 'DOMAIN-SUFFIX,disquscdn.com,雷公马'
-    - 'DOMAIN-SUFFIX,dnsimple.com,雷公马'
-    - 'DOMAIN-SUFFIX,docker.com,雷公马'
-    - 'DOMAIN-SUFFIX,dribbble.com,雷公马'
-    - 'DOMAIN-SUFFIX,droplr.com,雷公马'
-    - 'DOMAIN-SUFFIX,duckduckgo.com,雷公马'
-    - 'DOMAIN-SUFFIX,dueapp.com,雷公马'
-    - 'DOMAIN-SUFFIX,dytt8.net,雷公马'
-    - 'DOMAIN-SUFFIX,edgecastcdn.net,雷公马'
-    - 'DOMAIN-SUFFIX,edgekey.net,雷公马'
-    - 'DOMAIN-SUFFIX,edgesuite.net,雷公马'
-    - 'DOMAIN-SUFFIX,engadget.com,雷公马'
-    - 'DOMAIN-SUFFIX,entrust.net,雷公马'
-    - 'DOMAIN-SUFFIX,eurekavpt.com,雷公马'
-    - 'DOMAIN-SUFFIX,evernote.com,雷公马'
-    - 'DOMAIN-SUFFIX,fabric.io,雷公马'
-    - 'DOMAIN-SUFFIX,fast.com,雷公马'
-    - 'DOMAIN-SUFFIX,fastly.net,雷公马'
-    - 'DOMAIN-SUFFIX,fc2.com,雷公马'
-    - 'DOMAIN-SUFFIX,feedburner.com,雷公马'
-    - 'DOMAIN-SUFFIX,feedly.com,雷公马'
-    - 'DOMAIN-SUFFIX,feedsportal.com,雷公马'
-    - 'DOMAIN-SUFFIX,fiftythree.com,雷公马'
-    - 'DOMAIN-SUFFIX,firebaseio.com,雷公马'
-    - 'DOMAIN-SUFFIX,flexibits.com,雷公马'
-    - 'DOMAIN-SUFFIX,flickr.com,雷公马'
-    - 'DOMAIN-SUFFIX,flipboard.com,雷公马'
-    - 'DOMAIN-SUFFIX,g.co,雷公马'
-    - 'DOMAIN-SUFFIX,gabia.net,雷公马'
-    - 'DOMAIN-SUFFIX,geni.us,雷公马'
-    - 'DOMAIN-SUFFIX,gfx.ms,雷公马'
-    - 'DOMAIN-SUFFIX,ggpht.com,雷公马'
-    - 'DOMAIN-SUFFIX,ghostnoteapp.com,雷公马'
-    - 'DOMAIN-SUFFIX,git.io,雷公马'
-    - 'DOMAIN-KEYWORD,github,雷公马'
-    - 'DOMAIN-SUFFIX,globalsign.com,雷公马'
-    - 'DOMAIN-SUFFIX,gmodules.com,雷公马'
-    - 'DOMAIN-SUFFIX,godaddy.com,雷公马'
-    - 'DOMAIN-SUFFIX,golang.org,雷公马'
-    - 'DOMAIN-SUFFIX,gongm.in,雷公马'
-    - 'DOMAIN-SUFFIX,goo.gl,雷公马'
-    - 'DOMAIN-SUFFIX,goodreaders.com,雷公马'
-    - 'DOMAIN-SUFFIX,goodreads.com,雷公马'
-    - 'DOMAIN-SUFFIX,gravatar.com,雷公马'
-    - 'DOMAIN-SUFFIX,gstatic.com,雷公马'
-    - 'DOMAIN-SUFFIX,gvt0.com,雷公马'
-    - 'DOMAIN-SUFFIX,hockeyapp.net,雷公马'
-    - 'DOMAIN-SUFFIX,hotmail.com,雷公马'
-    - 'DOMAIN-SUFFIX,icons8.com,雷公马'
-    - 'DOMAIN-SUFFIX,ifixit.com,雷公马'
-    - 'DOMAIN-SUFFIX,ift.tt,雷公马'
-    - 'DOMAIN-SUFFIX,ifttt.com,雷公马'
-    - 'DOMAIN-SUFFIX,iherb.com,雷公马'
-    - 'DOMAIN-SUFFIX,imageshack.us,雷公马'
-    - 'DOMAIN-SUFFIX,img.ly,雷公马'
-    - 'DOMAIN-SUFFIX,imgur.com,雷公马'
-    - 'DOMAIN-SUFFIX,imore.com,雷公马'
-    - 'DOMAIN-SUFFIX,instapaper.com,雷公马'
-    - 'DOMAIN-SUFFIX,ipn.li,雷公马'
-    - 'DOMAIN-SUFFIX,is.gd,雷公马'
-    - 'DOMAIN-SUFFIX,issuu.com,雷公马'
-    - 'DOMAIN-SUFFIX,itgonglun.com,雷公马'
-    - 'DOMAIN-SUFFIX,itun.es,雷公马'
-    - 'DOMAIN-SUFFIX,ixquick.com,雷公马'
-    - 'DOMAIN-SUFFIX,j.mp,雷公马'
-    - 'DOMAIN-SUFFIX,js.revsci.net,雷公马'
-    - 'DOMAIN-SUFFIX,jshint.com,雷公马'
-    - 'DOMAIN-SUFFIX,jtvnw.net,雷公马'
-    - 'DOMAIN-SUFFIX,justgetflux.com,雷公马'
-    - 'DOMAIN-SUFFIX,kat.cr,雷公马'
-    - 'DOMAIN-SUFFIX,klip.me,雷公马'
-    - 'DOMAIN-SUFFIX,libsyn.com,雷公马'
-    - 'DOMAIN-SUFFIX,linkedin.com,雷公马'
-    - 'DOMAIN-SUFFIX,line-apps.com,雷公马'
-    - 'DOMAIN-SUFFIX,linode.com,雷公马'
-    - 'DOMAIN-SUFFIX,lithium.com,雷公马'
-    - 'DOMAIN-SUFFIX,littlehj.com,雷公马'
-    - 'DOMAIN-SUFFIX,live.com,雷公马'
-    - 'DOMAIN-SUFFIX,live.net,雷公马'
-    - 'DOMAIN-SUFFIX,livefilestore.com,雷公马'
-    - 'DOMAIN-SUFFIX,llnwd.net,雷公马'
-    - 'DOMAIN-SUFFIX,macid.co,雷公马'
-    - 'DOMAIN-SUFFIX,macromedia.com,雷公马'
-    - 'DOMAIN-SUFFIX,macrumors.com,雷公马'
-    - 'DOMAIN-SUFFIX,mashable.com,雷公马'
-    - 'DOMAIN-SUFFIX,mathjax.org,雷公马'
-    - 'DOMAIN-SUFFIX,medium.com,雷公马'
-    - 'DOMAIN-SUFFIX,mega.co.nz,雷公马'
-    - 'DOMAIN-SUFFIX,mega.nz,雷公马'
-    - 'DOMAIN-SUFFIX,megaupload.com,雷公马'
-    - 'DOMAIN-SUFFIX,microsofttranslator.com,雷公马'
-    - 'DOMAIN-SUFFIX,mindnode.com,雷公马'
-    - 'DOMAIN-SUFFIX,mobile01.com,雷公马'
-    - 'DOMAIN-SUFFIX,modmyi.com,雷公马'
-    - 'DOMAIN-SUFFIX,msedge.net,雷公马'
-    - 'DOMAIN-SUFFIX,myfontastic.com,雷公马'
-    - 'DOMAIN-SUFFIX,name.com,雷公马'
-    - 'DOMAIN-SUFFIX,nextmedia.com,雷公马'
-    - 'DOMAIN-SUFFIX,nsstatic.net,雷公马'
-    - 'DOMAIN-SUFFIX,nssurge.com,雷公马'
-    - 'DOMAIN-SUFFIX,nyt.com,雷公马'
-    - 'DOMAIN-SUFFIX,nytimes.com,雷公马'
-    - 'DOMAIN-SUFFIX,omnigroup.com,雷公马'
-    - 'DOMAIN-SUFFIX,onedrive.com,雷公马'
-    - 'DOMAIN-SUFFIX,onenote.com,雷公马'
-    - 'DOMAIN-SUFFIX,ooyala.com,雷公马'
-    - 'DOMAIN-SUFFIX,openvpn.net,雷公马'
-    - 'DOMAIN-SUFFIX,openwrt.org,雷公马'
-    - 'DOMAIN-SUFFIX,orkut.com,雷公马'
-    - 'DOMAIN-SUFFIX,osxdaily.com,雷公马'
-    - 'DOMAIN-SUFFIX,outlook.com,雷公马'
-    - 'DOMAIN-SUFFIX,ow.ly,雷公马'
-    - 'DOMAIN-SUFFIX,paddleapi.com,雷公马'
-    - 'DOMAIN-SUFFIX,parallels.com,雷公马'
-    - 'DOMAIN-SUFFIX,parse.com,雷公马'
-    - 'DOMAIN-SUFFIX,pdfexpert.com,雷公马'
-    - 'DOMAIN-SUFFIX,periscope.tv,雷公马'
-    - 'DOMAIN-SUFFIX,pinboard.in,雷公马'
-    - 'DOMAIN-SUFFIX,pinterest.com,雷公马'
-    - 'DOMAIN-SUFFIX,pixelmator.com,雷公马'
-    - 'DOMAIN-SUFFIX,pixiv.net,雷公马'
-    - 'DOMAIN-SUFFIX,playpcesor.com,雷公马'
-    - 'DOMAIN-SUFFIX,playstation.com,雷公马'
-    - 'DOMAIN-SUFFIX,playstation.com.hk,雷公马'
-    - 'DOMAIN-SUFFIX,playstation.net,雷公马'
-    - 'DOMAIN-SUFFIX,playstationnetwork.com,雷公马'
-    - 'DOMAIN-SUFFIX,pushwoosh.com,雷公马'
-    - 'DOMAIN-SUFFIX,rime.im,雷公马'
-    - 'DOMAIN-SUFFIX,servebom.com,雷公马'
-    - 'DOMAIN-SUFFIX,sfx.ms,雷公马'
-    - 'DOMAIN-SUFFIX,shadowsocks.org,雷公马'
-    - 'DOMAIN-SUFFIX,sharethis.com,雷公马'
-    - 'DOMAIN-SUFFIX,shazam.com,雷公马'
-    - 'DOMAIN-SUFFIX,skype.com,雷公马'
-    - 'DOMAIN-SUFFIX,smartdns雷公马.com,雷公马'
-    - 'DOMAIN-SUFFIX,smartmailcloud.com,雷公马'
-    - 'DOMAIN-SUFFIX,sndcdn.com,雷公马'
-    - 'DOMAIN-SUFFIX,sony.com,雷公马'
-    - 'DOMAIN-SUFFIX,soundcloud.com,雷公马'
-    - 'DOMAIN-SUFFIX,sourceforge.net,雷公马'
-    - 'DOMAIN-SUFFIX,spotify.com,雷公马'
-    - 'DOMAIN-SUFFIX,squarespace.com,雷公马'
-    - 'DOMAIN-SUFFIX,sstatic.net,雷公马'
-    - 'DOMAIN-SUFFIX,st.luluku.pw,雷公马'
-    - 'DOMAIN-SUFFIX,stackoverflow.com,雷公马'
-    - 'DOMAIN-SUFFIX,startpage.com,雷公马'
-    - 'DOMAIN-SUFFIX,staticflickr.com,雷公马'
-    - 'DOMAIN-SUFFIX,steamcommunity.com,雷公马'
-    - 'DOMAIN-SUFFIX,symauth.com,雷公马'
-    - 'DOMAIN-SUFFIX,symcb.com,雷公马'
-    - 'DOMAIN-SUFFIX,symcd.com,雷公马'
-    - 'DOMAIN-SUFFIX,tapbots.com,雷公马'
-    - 'DOMAIN-SUFFIX,tapbots.net,雷公马'
-    - 'DOMAIN-SUFFIX,tdesktop.com,雷公马'
-    - 'DOMAIN-SUFFIX,techcrunch.com,雷公马'
-    - 'DOMAIN-SUFFIX,techsmith.com,雷公马'
-    - 'DOMAIN-SUFFIX,thepiratebay.org,雷公马'
-    - 'DOMAIN-SUFFIX,theverge.com,雷公马'
-    - 'DOMAIN-SUFFIX,time.com,雷公马'
-    - 'DOMAIN-SUFFIX,timeinc.net,雷公马'
-    - 'DOMAIN-SUFFIX,tiny.cc,雷公马'
-    - 'DOMAIN-SUFFIX,tinypic.com,雷公马'
-    - 'DOMAIN-SUFFIX,tmblr.co,雷公马'
-    - 'DOMAIN-SUFFIX,todoist.com,雷公马'
-    - 'DOMAIN-SUFFIX,trello.com,雷公马'
-    - 'DOMAIN-SUFFIX,trustasiassl.com,雷公马'
-    - 'DOMAIN-SUFFIX,tumblr.co,雷公马'
-    - 'DOMAIN-SUFFIX,tumblr.com,雷公马'
-    - 'DOMAIN-SUFFIX,tweetdeck.com,雷公马'
-    - 'DOMAIN-SUFFIX,tweetmarker.net,雷公马'
-    - 'DOMAIN-SUFFIX,twitch.tv,雷公马'
-    - 'DOMAIN-SUFFIX,txmblr.com,雷公马'
-    - 'DOMAIN-SUFFIX,typekit.net,雷公马'
-    - 'DOMAIN-SUFFIX,ubertags.com,雷公马'
-    - 'DOMAIN-SUFFIX,ublock.org,雷公马'
-    - 'DOMAIN-SUFFIX,ubnt.com,雷公马'
-    - 'DOMAIN-SUFFIX,ulyssesapp.com,雷公马'
-    - 'DOMAIN-SUFFIX,urchin.com,雷公马'
-    - 'DOMAIN-SUFFIX,usertrust.com,雷公马'
-    - 'DOMAIN-SUFFIX,v.gd,雷公马'
-    - 'DOMAIN-SUFFIX,v2ex.com,雷公马'
-    - 'DOMAIN-SUFFIX,vimeo.com,雷公马'
-    - 'DOMAIN-SUFFIX,vimeocdn.com,雷公马'
-    - 'DOMAIN-SUFFIX,vine.co,雷公马'
-    - 'DOMAIN-SUFFIX,vivaldi.com,雷公马'
-    - 'DOMAIN-SUFFIX,vox-cdn.com,雷公马'
-    - 'DOMAIN-SUFFIX,vsco.co,雷公马'
-    - 'DOMAIN-SUFFIX,vultr.com,雷公马'
-    - 'DOMAIN-SUFFIX,w.org,雷公马'
-    - 'DOMAIN-SUFFIX,w3schools.com,雷公马'
-    - 'DOMAIN-SUFFIX,webtype.com,雷公马'
-    - 'DOMAIN-SUFFIX,wikiwand.com,雷公马'
-    - 'DOMAIN-SUFFIX,wikileaks.org,雷公马'
-    - 'DOMAIN-SUFFIX,wikimedia.org,雷公马'
-    - 'DOMAIN-SUFFIX,wikipedia.com,雷公马'
-    - 'DOMAIN-SUFFIX,wikipedia.org,雷公马'
-    - 'DOMAIN-SUFFIX,windows.com,雷公马'
-    - 'DOMAIN-SUFFIX,windows.net,雷公马'
-    - 'DOMAIN-SUFFIX,wire.com,雷公马'
-    - 'DOMAIN-SUFFIX,wordpress.com,雷公马'
-    - 'DOMAIN-SUFFIX,workflowy.com,雷公马'
-    - 'DOMAIN-SUFFIX,wp.com,雷公马'
-    - 'DOMAIN-SUFFIX,wsj.com,雷公马'
-    - 'DOMAIN-SUFFIX,wsj.net,雷公马'
-    - 'DOMAIN-SUFFIX,xda-developers.com,雷公马'
-    - 'DOMAIN-SUFFIX,xeeno.com,雷公马'
-    - 'DOMAIN-SUFFIX,xiti.com,雷公马'
-    - 'DOMAIN-SUFFIX,yahoo.com,雷公马'
-    - 'DOMAIN-SUFFIX,yimg.com,雷公马'
-    - 'DOMAIN-SUFFIX,ying.com,雷公马'
-    - 'DOMAIN-SUFFIX,yoyo.org,雷公马'
-    - 'DOMAIN-SUFFIX,ytimg.com,雷公马'
-    - 'DOMAIN-SUFFIX,telegra.ph,雷公马'
-    - 'DOMAIN-SUFFIX,telegram.org,雷公马'
-    - 'IP-CIDR,91.108.4.0/22,雷公马,no-resolve'
-    - 'IP-CIDR,91.108.8.0/21,雷公马,no-resolve'
-    - 'IP-CIDR,91.108.16.0/22,雷公马,no-resolve'
-    - 'IP-CIDR,91.108.56.0/22,雷公马,no-resolve'
-    - 'IP-CIDR,149.154.160.0/20,雷公马,no-resolve'
-    - 'IP-CIDR6,2001:67c:4e8::/48,雷公马,no-resolve'
-    - 'IP-CIDR6,2001:b28:f23d::/48,雷公马,no-resolve'
-    - 'IP-CIDR6,2001:b28:f23f::/48,雷公马,no-resolve'
-    - 'IP-CIDR,120.232.181.162/32,雷公马,no-resolve'
-    - 'IP-CIDR,120.241.147.226/32,雷公马,no-resolve'
-    - 'IP-CIDR,120.253.253.226/32,雷公马,no-resolve'
-    - 'IP-CIDR,120.253.255.162/32,雷公马,no-resolve'
-    - 'IP-CIDR,120.253.255.34/32,雷公马,no-resolve'
-    - 'IP-CIDR,120.253.255.98/32,雷公马,no-resolve'
-    - 'IP-CIDR,180.163.150.162/32,雷公马,no-resolve'
-    - 'IP-CIDR,180.163.150.34/32,雷公马,no-resolve'
-    - 'IP-CIDR,180.163.151.162/32,雷公马,no-resolve'
-    - 'IP-CIDR,180.163.151.34/32,雷公马,no-resolve'
-    - 'IP-CIDR,203.208.39.0/24,雷公马,no-resolve'
-    - 'IP-CIDR,203.208.40.0/24,雷公马,no-resolve'
-    - 'IP-CIDR,203.208.41.0/24,雷公马,no-resolve'
-    - 'IP-CIDR,203.208.43.0/24,雷公马,no-resolve'
-    - 'IP-CIDR,203.208.50.0/24,雷公马,no-resolve'
-    - 'IP-CIDR,220.181.174.162/32,雷公马,no-resolve'
-    - 'IP-CIDR,220.181.174.226/32,雷公马,no-resolve'
-    - 'IP-CIDR,220.181.174.34/32,雷公马,no-resolve'
-    - 'DOMAIN,injections.adguard.org,DIRECT'
-    - 'DOMAIN,local.adguard.org,DIRECT'
-    - 'DOMAIN-SUFFIX,local,DIRECT'
-    - 'IP-CIDR,127.0.0.0/8,DIRECT'
-    - 'IP-CIDR,172.16.0.0/12,DIRECT'
-    - 'IP-CIDR,192.168.0.0/16,DIRECT'
-    - 'IP-CIDR,10.0.0.0/8,DIRECT'
-    - 'IP-CIDR,17.0.0.0/8,DIRECT'
-    - 'IP-CIDR,100.64.0.0/10,DIRECT'
-    - 'IP-CIDR,224.0.0.0/4,DIRECT'
-    - 'IP-CIDR6,fe80::/10,DIRECT'
-    - 'DOMAIN-SUFFIX,cn,DIRECT'
-    - 'DOMAIN-KEYWORD,-cn,DIRECT'
-    - 'GEOIP,CN,DIRECT'
-    - 'MATCH,雷公马'
+# (GlobalTV)
+# > ABC
+- DOMAIN-SUFFIX,edgedatg.com,GlobalTV
+- DOMAIN-SUFFIX,go.com,GlobalTV
+
+# > AbemaTV
+- DOMAIN,linear-abematv.akamaized.net,GlobalTV
+- DOMAIN-SUFFIX,abema.io,GlobalTV
+- DOMAIN-SUFFIX,abema.tv,GlobalTV
+- DOMAIN-SUFFIX,akamaized.net,GlobalTV
+- DOMAIN-SUFFIX,ameba.jp,GlobalTV
+- DOMAIN-SUFFIX,hayabusa.io,GlobalTV
+
+# > Amazon Prime Video
+- DOMAIN-SUFFIX,aiv-cdn.net,GlobalTV
+- DOMAIN-SUFFIX,amazonaws.com,GlobalTV
+- DOMAIN-SUFFIX,amazonvideo.com,GlobalTV
+- DOMAIN-SUFFIX,llnwd.net,GlobalTV
+
+# > Bahamut
+- DOMAIN-SUFFIX,bahamut.com.tw,GlobalTV
+- DOMAIN-SUFFIX,gamer.com.tw,GlobalTV
+- DOMAIN-SUFFIX,hinet.net,GlobalTV
+
+# > BBC
+- DOMAIN-KEYWORD,bbcfmt,GlobalTV
+- DOMAIN-KEYWORD,co.uk,GlobalTV
+- DOMAIN-KEYWORD,uk-live,GlobalTV
+- DOMAIN-SUFFIX,bbc.co,GlobalTV
+- DOMAIN-SUFFIX,bbc.co.uk,GlobalTV
+- DOMAIN-SUFFIX,bbc.com,GlobalTV
+- DOMAIN-SUFFIX,bbci.co,GlobalTV
+- DOMAIN-SUFFIX,bbci.co.uk,GlobalTV
+
+# > CHOCO TV
+- DOMAIN-SUFFIX,chocotv.com.tw,GlobalTV
+
+# > Epicgames
+- DOMAIN-KEYWORD,epicgames,GlobalTV
+- DOMAIN-SUFFIX,helpshift.com,GlobalTV
+
+# > Fox+
+- DOMAIN-KEYWORD,foxplus,GlobalTV
+- DOMAIN-SUFFIX,config.fox.com,GlobalTV
+- DOMAIN-SUFFIX,emome.net,GlobalTV
+- DOMAIN-SUFFIX,fox.com,GlobalTV
+- DOMAIN-SUFFIX,foxdcg.com,GlobalTV
+- DOMAIN-SUFFIX,foxnow.com,GlobalTV
+- DOMAIN-SUFFIX,foxplus.com,GlobalTV
+- DOMAIN-SUFFIX,foxplay.com,GlobalTV
+- DOMAIN-SUFFIX,ipinfo.io,GlobalTV
+- DOMAIN-SUFFIX,mstage.io,GlobalTV
+- DOMAIN-SUFFIX,now.com,GlobalTV
+- DOMAIN-SUFFIX,theplatform.com,GlobalTV
+- DOMAIN-SUFFIX,urlload.net,GlobalTV
+
+# > HBO && HBO Go
+- DOMAIN-SUFFIX,execute-api.ap-southeast-1.amazonaws.com,GlobalTV
+- DOMAIN-SUFFIX,hbo.com,GlobalTV
+- DOMAIN-SUFFIX,hboasia.com,GlobalTV
+- DOMAIN-SUFFIX,hbogo.com,GlobalTV
+- DOMAIN-SUFFIX,hbogoasia.hk,GlobalTV
+
+# > Hulu
+- DOMAIN-SUFFIX,happyon.jp,GlobalTV
+- DOMAIN-SUFFIX,hulu.com,GlobalTV
+- DOMAIN-SUFFIX,huluim.com,GlobalTV
+- DOMAIN-SUFFIX,hulustream.com,GlobalTV
+
+# > Imkan
+- DOMAIN-SUFFIX,imkan.tv,GlobalTV
+
+# > JOOX
+- DOMAIN-SUFFIX,joox.com,GlobalTV
+
+# > MytvSUPER
+- DOMAIN-KEYWORD,nowtv100,GlobalTV
+- DOMAIN-KEYWORD,rthklive,GlobalTV
+- DOMAIN-SUFFIX,mytvsuper.com,GlobalTV
+- DOMAIN-SUFFIX,tvb.com,GlobalTV
+
+# > Netflix
+- DOMAIN-SUFFIX,netflix.com,GlobalTV
+- DOMAIN-SUFFIX,netflix.net,GlobalTV
+- DOMAIN-SUFFIX,nflxext.com,GlobalTV
+- DOMAIN-SUFFIX,nflximg.com,GlobalTV
+- DOMAIN-SUFFIX,nflximg.net,GlobalTV
+- DOMAIN-SUFFIX,nflxso.net,GlobalTV
+- DOMAIN-SUFFIX,nflxvideo.net,GlobalTV
+
+# > Pandora
+- DOMAIN-SUFFIX,pandora.com,GlobalTV
+
+# > Sky GO
+- DOMAIN-SUFFIX,sky.com,GlobalTV
+- DOMAIN-SUFFIX,skygo.co.nz,GlobalTV
+
+# > Spotify
+- DOMAIN-KEYWORD,spotify,GlobalTV
+- DOMAIN-SUFFIX,scdn.co,GlobalTV
+- DOMAIN-SUFFIX,spoti.fi,GlobalTV
+
+# > viuTV
+- DOMAIN-SUFFIX,viu.tv,GlobalTV
+
+# > Youtube
+- DOMAIN-KEYWORD,youtube,GlobalTV
+- DOMAIN-SUFFIX,googlevideo.com,GlobalTV
+- DOMAIN-SUFFIX,gvt2.com,GlobalTV
+- DOMAIN-SUFFIX,youtu.be,GlobalTV
+
+# (AsianTV)
+# > Bilibili
+- DOMAIN-KEYWORD,bilibili,AsianTV
+- DOMAIN-SUFFIX,acg.tv,AsianTV
+- DOMAIN-SUFFIX,acgvideo.com,AsianTV
+- DOMAIN-SUFFIX,b23.tv,AsianTV
+- DOMAIN-SUFFIX,biliapi.com,AsianTV
+- DOMAIN-SUFFIX,biliapi.net,AsianTV
+- DOMAIN-SUFFIX,bilibili.com,AsianTV
+- DOMAIN-SUFFIX,biligame.com,AsianTV
+- DOMAIN-SUFFIX,biligame.net,AsianTV
+- DOMAIN-SUFFIX,hdslb.com,AsianTV
+- DOMAIN-SUFFIX,im9.com,AsianTV
+
+# > IQIYI
+- DOMAIN-KEYWORD,qiyi,AsianTV
+- DOMAIN-SUFFIX,qy.net,AsianTV
+
+# > letv
+- DOMAIN-SUFFIX,api.mob.app.letv.com,AsianTV
+
+# > NeteaseMusic
+- DOMAIN-SUFFIX,163yun.com,AsianTV
+- DOMAIN-SUFFIX,music.126.net,AsianTV
+- DOMAIN-SUFFIX,music.163.com,AsianTV
+
+# > Tencent Video
+- DOMAIN-SUFFIX,vv.video.qq.com,AsianTV
+
+# China Area Network
+# > Microsoft
+- DOMAIN-SUFFIX,microsoft.com,Domestic
+- DOMAIN-SUFFIX,windows.net,Domestic
+- DOMAIN-SUFFIX,sfx.ms,Domestic
+- DOMAIN-SUFFIX,sharepoint.com,Domestic
+- DOMAIN-KEYWORD,officecdn,Domestic
+# > Blizzard
+- DOMAIN-SUFFIX,blizzard.com,Domestic
+- DOMAIN-SUFFIX,battle.net,Domestic
+- DOMAIN,blzddist1-a.akamaihd.net,Domestic
+# > Steam
+- DOMAIN-SUFFIX,steampowered.com,Domestic
+- DOMAIN-SUFFIX,steam-chat.com,Domestic
+- DOMAIN-KEYWORD,steamcdn,Domestic
+- DOMAIN-KEYWORD,steamstore,Domestic
+- DOMAIN-KEYWORD,steamuserimages,Domestic
+- DOMAIN-KEYWORD,steambroadcast,Domestic
+# > Tencent
+#USER-AGENT,MicroMessenger%20Client,Domestic
+#USER-AGENT,WeChat*,Domestic
+- DOMAIN-SUFFIX,qq.com,Domestic
+- DOMAIN-SUFFIX,qpic.cn,Domestic
+- DOMAIN-SUFFIX,tencent.com,Domestic
+# > Alibaba
+- DOMAIN-SUFFIX,alibaba.com,Domestic
+- DOMAIN-SUFFIX,alicdn.com,Domestic
+- DOMAIN-SUFFIX,amap.com,Domestic
+- DOMAIN-SUFFIX,dingtalk.com,Domestic
+- DOMAIN-SUFFIX,taobao.com,Domestic
+- DOMAIN-SUFFIX,tmall.com,Domestic
+- DOMAIN-SUFFIX,ykimg.com,Domestic
+- DOMAIN-SUFFIX,youku.com,Domestic
+- DOMAIN-SUFFIX,xiami.com,Domestic
+- DOMAIN-SUFFIX,xiami.net,Domestic
+# > NetEase
+- DOMAIN-SUFFIX,163.com,Domestic
+- DOMAIN-SUFFIX,126.net,Domestic
+- DOMAIN-SUFFIX,163yun.com,Domestic
+# > Sohu
+- DOMAIN-SUFFIX,sohu.com.cn,Domestic
+- DOMAIN-SUFFIX,itc.cn,Domestic
+- DOMAIN-SUFFIX,sohu.com,Domestic
+- DOMAIN-SUFFIX,v-56.com,Domestic
+# > Sina
+- DOMAIN-SUFFIX,weibo.com,Domestic
+- DOMAIN-SUFFIX,weibo.cn,Domestic
+# > JD
+- DOMAIN-SUFFIX,jd.com,Domestic
+- DOMAIN-SUFFIX,jd.hk,Domestic
+- DOMAIN-SUFFIX,360buyimg.com,Domestic
+# > MI
+- DOMAIN-SUFFIX,duokan.com,Domestic
+- DOMAIN-SUFFIX,mi-img.com,Domestic
+- DOMAIN-SUFFIX,mifile.cn,Domestic
+- DOMAIN-SUFFIX,xiaomi.com,Domestic
+# > bilibili
+- DOMAIN-SUFFIX,acgvideo.com,Domestic
+- DOMAIN-SUFFIX,bilibili.com,Domestic
+- DOMAIN-SUFFIX,hdslb.com,Domestic
+# > iQiyi
+- DOMAIN-SUFFIX,iqiyi.com,Domestic
+- DOMAIN-SUFFIX,iqiyipic.com,Domestic
+- DOMAIN-SUFFIX,71.am.com,Domestic
+# > HunanTV
+- DOMAIN-SUFFIX,hitv.com,Domestic
+- DOMAIN-SUFFIX,mgtv.com,Domestic
+# > Meitu
+- DOMAIN-SUFFIX,meitu.com,Domestic
+- DOMAIN-SUFFIX,meitudata.com,Domestic
+- DOMAIN-SUFFIX,meipai.com,Domestic
+# > YYeTs
+- DOMAIN-SUFFIX,zmzapi.com,Domestic
+- DOMAIN-SUFFIX,zimuzu.tv,Domestic
+- DOMAIN-SUFFIX,zmzfile.com,Domestic
+- DOMAIN-SUFFIX,zmzapi.net,Domestic
+# > 蛋蛋赞
+- DOMAIN-SUFFIX,baduziyuan.com,Domestic
+- DOMAIN-SUFFIX,com-hs-hkdy.com,Domestic
+- DOMAIN-SUFFIX,czybjz.com,Domestic
+- DOMAIN-SUFFIX,dandanzan.com,Domestic
+- DOMAIN-SUFFIX,fjhps.com,Domestic
+- DOMAIN-SUFFIX,kuyunbo.club,Domestic
+# > Baidu
+- DOMAIN-SUFFIX,baidu.com,Domestic
+- DOMAIN-SUFFIX,baidubcr.com,Domestic
+- DOMAIN-SUFFIX,bdstatic.com,Domestic
+# > ChinaNet
+- DOMAIN-SUFFIX,189.cn,Domestic
+- DOMAIN-SUFFIX,21cn.com,Domestic
+# > ByteDance
+- DOMAIN-SUFFIX,bytecdn.cn,Domestic
+- DOMAIN-SUFFIX,pstatp.com,Domestic
+- DOMAIN-SUFFIX,snssdk.com,Domestic
+- DOMAIN-SUFFIX,toutiao.com,Domestic
+# > Content Delivery Network
+# > Akamai
+- DOMAIN-SUFFIX,akadns.net,Domestic
+# - DOMAIN-SUFFIX,akamai.net,Domestic
+# - DOMAIN-SUFFIX,akamaiedge.net,Domestic
+# - DOMAIN-SUFFIX,akamaihd.net,Domestic
+# - DOMAIN-SUFFIX,akamaistream.net,Domestic
+# - DOMAIN-SUFFIX,akamaized.net,Domestic
+# > ChinaNetCenter
+- DOMAIN-SUFFIX,chinanetcenter.com,Domestic
+- DOMAIN-SUFFIX,wangsu.com,Domestic
+# > IP Query
+- DOMAIN-SUFFIX,ipip.net,Domestic
+- DOMAIN-SUFFIX,ip.cn,Domestic
+- DOMAIN-SUFFIX,ip.la,Domestic
+- DOMAIN-SUFFIX,ip-cdn.com,Domestic
+- DOMAIN-SUFFIX,ipv6-test.com,Domestic
+- DOMAIN-SUFFIX,test-ipv6.com,Domestic
+- DOMAIN-SUFFIX,whatismyip.com,Domestic
+- DOMAIN,ip.bjango.com,Domestic
+# > Other
+- DOMAIN-SUFFIX,40017.cn,Domestic
+- DOMAIN-SUFFIX,broadcasthe.net,Domestic
+- DOMAIN-SUFFIX,cailianpress.com,Domestic
+- DOMAIN-SUFFIX,chdbits.co,Domestic
+- DOMAIN-SUFFIX,chushou.tv,Domestic
+- DOMAIN-SUFFIX,cmbchina.com,Domestic
+- DOMAIN-SUFFIX,cmbimg.com,Domestic
+- DOMAIN-SUFFIX,cmct.tv,Domestic
+- DOMAIN-SUFFIX,cmvideo.cn,Domestic
+- DOMAIN-SUFFIX,cnlang.org,Domestic
+- DOMAIN-SUFFIX,doubanio.com,Domestic
+- DOMAIN-SUFFIX,douyu.com,Domestic
+- DOMAIN-SUFFIX,douyucdn.cn,Domestic
+- DOMAIN-SUFFIX,dxycdn.com,Domestic
+- DOMAIN-SUFFIX,hicloud.com,Domestic
+- DOMAIN-SUFFIX,hdchina.org,Domestic
+- DOMAIN-SUFFIX,hdcmct.org,Domestic
+- DOMAIN-SUFFIX,ithome.com,Domestic
+- DOMAIN-SUFFIX,kkmh.com,Domestic
+- DOMAIN-SUFFIX,ksosoft.com,Domestic
+- DOMAIN-SUFFIX,maoyun.tv,Domestic
+- DOMAIN-SUFFIX,meituan.net,Domestic
+- DOMAIN-SUFFIX,mobike.com,Domestic
+- DOMAIN-SUFFIX,mubu.com,Domestic
+- DOMAIN-SUFFIX,myzaker.com,Domestic
+- DOMAIN-SUFFIX,ourbits.club,Domestic
+- DOMAIN-SUFFIX,passthepopcorn.me,Domestic
+- DOMAIN-SUFFIX,paypal.com,Domestic
+- DOMAIN-SUFFIX,paypalobjects.com,Domestic
+- DOMAIN-SUFFIX,privatehd.to,Domestic
+- DOMAIN-SUFFIX,redacted.ch,Domestic
+- DOMAIN-SUFFIX,ruguoapp.com,Domestic
+- DOMAIN-SUFFIX,smzdm.com,Domestic
+- DOMAIN-SUFFIX,sogou.com,Domestic
+- DOMAIN-SUFFIX,teamviewer.com,Domestic
+- DOMAIN-SUFFIX,totheglory.im,Domestic
+- DOMAIN-SUFFIX,tp.m-team.cc,Domestic
+- DOMAIN-SUFFIX,udacity.com,Domestic
+- DOMAIN-SUFFIX,xmcdn.com,Domestic
+- DOMAIN-SUFFIX,yangkeduo.com,Domestic
+- DOMAIN-SUFFIX,zhihu.com,Domestic
+- DOMAIN-SUFFIX,zhimg.com,Domestic
+#USER-AGENT,NeteaseMusic*,Domestic
+#USER-AGENT,%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90*,Domestic
+
+# (DNS Cache Pollution Protection)
+# > Google
+- DOMAIN-SUFFIX,appspot.com,Proxy
+- DOMAIN-SUFFIX,blogger.com,Proxy
+- DOMAIN-SUFFIX,getoutline.org,Proxy
+- DOMAIN-SUFFIX,gvt0.com,Proxy
+- DOMAIN-SUFFIX,gvt1.com,Proxy
+- DOMAIN-SUFFIX,gvt3.com,Proxy
+- DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Proxy
+- DOMAIN-KEYWORD,google,Proxy
+- DOMAIN-KEYWORD,blogspot,Proxy
+# > Facebook
+- DOMAIN-SUFFIX,cdninstagram.com,Proxy
+- DOMAIN-SUFFIX,fb.com,Proxy
+- DOMAIN-SUFFIX,fb.me,Proxy
+- DOMAIN-SUFFIX,fbaddins.com,Proxy
+- DOMAIN-SUFFIX,fbcdn.net,Proxy
+- DOMAIN-SUFFIX,fbsbx.com,Proxy
+- DOMAIN-SUFFIX,fbworkmail.com,Proxy
+- DOMAIN-SUFFIX,instagram.com,Proxy
+- DOMAIN-SUFFIX,m.me,Proxy
+- DOMAIN-SUFFIX,messenger.com,Proxy
+- DOMAIN-SUFFIX,oculus.com,Proxy
+- DOMAIN-SUFFIX,oculuscdn.com,Proxy
+- DOMAIN-SUFFIX,rocksdb.org,Proxy
+- DOMAIN-SUFFIX,whatsapp.com,Proxy
+- DOMAIN-SUFFIX,whatsapp.net,Proxy
+- DOMAIN-KEYWORD,facebook,Proxy
+# > Twitter
+- DOMAIN-SUFFIX,pscp.tv,Proxy
+- DOMAIN-SUFFIX,periscope.tv,Proxy
+- DOMAIN-SUFFIX,t.co,Proxy
+- DOMAIN-SUFFIX,twimg.co,Proxy
+- DOMAIN-SUFFIX,twimg.com,Proxy
+- DOMAIN-SUFFIX,twitpic.com,Proxy
+- DOMAIN-SUFFIX,vine.co,Proxy
+- DOMAIN-KEYWORD,twitter,Proxy
+# > Telegram
+- DOMAIN-SUFFIX,t.me,Proxy
+- DOMAIN-SUFFIX,tdesktop.com,Proxy
+- DOMAIN-SUFFIX,telegra.ph,Proxy
+- DOMAIN-SUFFIX,telegram.me,Proxy
+- DOMAIN-SUFFIX,telegram.org,Proxy
+# > Line
+- DOMAIN-SUFFIX,line.me,Proxy
+- DOMAIN-SUFFIX,line-apps.com,Proxy
+- DOMAIN-SUFFIX,line-scdn.net,Proxy
+- DOMAIN-SUFFIX,naver.jp,Proxy
+# > Other
+- DOMAIN-SUFFIX,4shared.com,Proxy
+- DOMAIN-SUFFIX,881903.com,Proxy
+- DOMAIN-SUFFIX,abc.net.au,Proxy
+- DOMAIN-SUFFIX,abebooks.com,Proxy
+- DOMAIN-SUFFIX,amazon.co.jp,Proxy
+- DOMAIN-SUFFIX,apigee.com,Proxy
+- DOMAIN-SUFFIX,apk-dl.com,Proxy
+- DOMAIN-SUFFIX,apkmirror.com,Proxy
+- DOMAIN-SUFFIX,apkmonk.com,Proxy
+- DOMAIN-SUFFIX,apkpure.com,Proxy
+- DOMAIN-SUFFIX,aptoide.com,Proxy
+- DOMAIN-SUFFIX,archive.is,Proxy
+- DOMAIN-SUFFIX,archive.org,Proxy
+- DOMAIN-SUFFIX,arte.tv,Proxy
+- DOMAIN-SUFFIX,ask.com,Proxy
+- DOMAIN-SUFFIX,avgle.com,Proxy
+- DOMAIN-SUFFIX,badoo.com,Proxy
+- DOMAIN-SUFFIX,bandwagonhost.com,Proxy
+- DOMAIN-SUFFIX,bbc.com,Proxy
+- DOMAIN-SUFFIX,behance.net,Proxy
+- DOMAIN-SUFFIX,bibox.com,Proxy
+- DOMAIN-SUFFIX,biggo.com.tw,Proxy
+- DOMAIN-SUFFIX,binance.com,Proxy
+- DOMAIN-SUFFIX,bitcointalk.org,Proxy
+- DOMAIN-SUFFIX,bitfinex.com,Proxy
+- DOMAIN-SUFFIX,bitmex.com,Proxy
+- DOMAIN-SUFFIX,bit-z.com,Proxy
+- DOMAIN-SUFFIX,bloglovin.com,Proxy
+- DOMAIN-SUFFIX,bloomberg.cn,Proxy
+- DOMAIN-SUFFIX,bloomberg.com,Proxy
+- DOMAIN-SUFFIX,book.com.tw,Proxy
+- DOMAIN-SUFFIX,booklive.jp,Proxy
+- DOMAIN-SUFFIX,books.com.tw,Proxy
+- DOMAIN-SUFFIX,box.com,Proxy
+- DOMAIN-SUFFIX,brookings.edu,Proxy
+- DOMAIN-SUFFIX,businessinsider.com,Proxy
+- DOMAIN-SUFFIX,bwh1.net,Proxy
+- DOMAIN-SUFFIX,castbox.fm,Proxy
+- DOMAIN-SUFFIX,cbc.ca,Proxy
+- DOMAIN-SUFFIX,cdw.com,Proxy
+- DOMAIN-SUFFIX,change.org,Proxy
+- DOMAIN-SUFFIX,ck101.com,Proxy
+- DOMAIN-SUFFIX,clarionproject.org,Proxy
+- DOMAIN-SUFFIX,clyp.it,Proxy
+- DOMAIN-SUFFIX,cna.com.tw,Proxy
+- DOMAIN-SUFFIX,comparitech.com,Proxy
+- DOMAIN-SUFFIX,conoha.jp,Proxy
+- DOMAIN-SUFFIX,crucial.com,Proxy
+- DOMAIN-SUFFIX,cts.com.tw,Proxy
+- DOMAIN-SUFFIX,cw.com.tw,Proxy
+- DOMAIN-SUFFIX,cyberctm.com,Proxy
+- DOMAIN-SUFFIX,dailymotion.com,Proxy
+- DOMAIN-SUFFIX,dailyview.tw,Proxy
+- DOMAIN-SUFFIX,daum.net,Proxy
+- DOMAIN-SUFFIX,daumcdn.net,Proxy
+- DOMAIN-SUFFIX,dcard.tw,Proxy
+- DOMAIN-SUFFIX,deepdiscount.com,Proxy
+- DOMAIN-SUFFIX,deezer.com,Proxy
+- DOMAIN-SUFFIX,depositphotos.com,Proxy
+- DOMAIN-SUFFIX,disconnect.me,Proxy
+- DOMAIN-SUFFIX,discordapp.com,Proxy
+- DOMAIN-SUFFIX,discordapp.net,Proxy
+- DOMAIN-SUFFIX,disqus.com,Proxy
+- DOMAIN-SUFFIX,dns2go.com,Proxy
+- DOMAIN-SUFFIX,dropbox.com,Proxy
+- DOMAIN-SUFFIX,dropboxusercontent.com,Proxy
+- DOMAIN-SUFFIX,duckduckgo.com,Proxy
+- DOMAIN-SUFFIX,dw.com,Proxy
+- DOMAIN-SUFFIX,dynu.com,Proxy
+- DOMAIN-SUFFIX,earthcam.com,Proxy
+- DOMAIN-SUFFIX,ebookservice.tw,Proxy
+- DOMAIN-SUFFIX,economist.com,Proxy
+- DOMAIN-SUFFIX,edgecastcdn.net,Proxy
+- DOMAIN-SUFFIX,edu,Proxy
+- DOMAIN-SUFFIX,elpais.com,Proxy
+- DOMAIN-SUFFIX,enanyang.my,Proxy
+- DOMAIN-SUFFIX,euronews.com,Proxy
+- DOMAIN-SUFFIX,feedly.com,Proxy
+- DOMAIN-SUFFIX,files.wordpress.com,Proxy
+- DOMAIN-SUFFIX,flickr.com,Proxy
+- DOMAIN-SUFFIX,flitto.com,Proxy
+- DOMAIN-SUFFIX,foreignpolicy.com,Proxy
+- DOMAIN-SUFFIX,friday.tw,Proxy
+- DOMAIN-SUFFIX,gate.io,Proxy
+- DOMAIN-SUFFIX,getlantern.org,Proxy
+- DOMAIN-SUFFIX,getsync.com,Proxy
+- DOMAIN-SUFFIX,globalvoices.org,Proxy
+- DOMAIN-SUFFIX,goo.ne.jp,Proxy
+- DOMAIN-SUFFIX,goodreads.com,Proxy
+- DOMAIN-SUFFIX,gov.tw,Proxy
+- DOMAIN-SUFFIX,gumroad.com,Proxy
+- DOMAIN-SUFFIX,hbg.com,Proxy
+- DOMAIN-SUFFIX,hightail.com,Proxy
+- DOMAIN-SUFFIX,hk01.com,Proxy
+- DOMAIN-SUFFIX,hkbf.org,Proxy
+- DOMAIN-SUFFIX,hkbookcity.com,Proxy
+- DOMAIN-SUFFIX,hkej.com,Proxy
+- DOMAIN-SUFFIX,hket.com,Proxy
+- DOMAIN-SUFFIX,hkgolden.com,Proxy
+- DOMAIN-SUFFIX,hootsuite.com,Proxy
+- DOMAIN-SUFFIX,hudson.org,Proxy
+- DOMAIN-SUFFIX,huobi.pro,Proxy
+- DOMAIN-SUFFIX,initiummall.com,Proxy
+- DOMAIN-SUFFIX,ipfs.io,Proxy
+- DOMAIN-SUFFIX,issuu.com,Proxy
+- DOMAIN-SUFFIX,japantimes.co.jp,Proxy
+- DOMAIN-SUFFIX,jiji.com,Proxy
+- DOMAIN-SUFFIX,jinx.com,Proxy
+- DOMAIN-SUFFIX,jkforum.net,Proxy
+- DOMAIN-SUFFIX,joinmastodon.org,Proxy
+- DOMAIN-SUFFIX,kakao.com,Proxy
+- DOMAIN-SUFFIX,lihkg.com,Proxy
+- DOMAIN-SUFFIX,live.com,Proxy
+- DOMAIN-SUFFIX,mail.ru,Proxy
+- DOMAIN-SUFFIX,matters.news,Proxy
+- DOMAIN-SUFFIX,medium.com,Proxy
+- DOMAIN-SUFFIX,mega.nz,Proxy
+- DOMAIN-SUFFIX,mil,Proxy
+- DOMAIN-SUFFIX,mobile01.com,Proxy
+- DOMAIN-SUFFIX,naver.com,Proxy
+- DOMAIN-SUFFIX,nikkei.com,Proxy
+- DOMAIN-SUFFIX,nofile.io,Proxy
+- DOMAIN-SUFFIX,now.com,Proxy
+- DOMAIN-SUFFIX,nyt.com,Proxy
+- DOMAIN-SUFFIX,nytchina.com,Proxy
+- DOMAIN-SUFFIX,nytcn.me,Proxy
+- DOMAIN-SUFFIX,nytco.com,Proxy
+- DOMAIN-SUFFIX,nytimes.com,Proxy
+- DOMAIN-SUFFIX,nytimg.com,Proxy
+- DOMAIN-SUFFIX,nytlog.com,Proxy
+- DOMAIN-SUFFIX,nytstyle.com,Proxy
+- DOMAIN-SUFFIX,ok.ru,Proxy
+- DOMAIN-SUFFIX,okex.com,Proxy
+- DOMAIN-SUFFIX,pcloud.com,Proxy
+- DOMAIN-SUFFIX,pinimg.com,Proxy
+- DOMAIN-SUFFIX,pixiv.net,Proxy
+- DOMAIN-SUFFIX,pornhub.com,Proxy
+- DOMAIN-SUFFIX,pureapk.com,Proxy
+- DOMAIN-SUFFIX,quora.com,Proxy
+- DOMAIN-SUFFIX,quoracdn.net,Proxy
+- DOMAIN-SUFFIX,rakuten.co.jp,Proxy
+- DOMAIN-SUFFIX,reddit.com,Proxy
+- DOMAIN-SUFFIX,redditmedia.com,Proxy
+- DOMAIN-SUFFIX,resilio.com,Proxy
+- DOMAIN-SUFFIX,reuters.com,Proxy
+- DOMAIN-SUFFIX,scmp.com,Proxy
+- DOMAIN-SUFFIX,scribd.com,Proxy
+- DOMAIN-SUFFIX,seatguru.com,Proxy
+- DOMAIN-SUFFIX,shadowsocks.org,Proxy
+- DOMAIN-SUFFIX,slideshare.net,Proxy
+- DOMAIN-SUFFIX,soundcloud.com,Proxy
+- DOMAIN-SUFFIX,startpage.com,Proxy
+- DOMAIN-SUFFIX,steamcommunity.com,Proxy
+- DOMAIN-SUFFIX,steemit.com,Proxy
+- DOMAIN-SUFFIX,t66y.com,Proxy
+- DOMAIN-SUFFIX,teco-hk.org,Proxy
+- DOMAIN-SUFFIX,teco-mo.org,Proxy
+- DOMAIN-SUFFIX,teddysun.com,Proxy
+- DOMAIN-SUFFIX,theinitium.com,Proxy
+- DOMAIN-SUFFIX,tineye.com,Proxy
+- DOMAIN-SUFFIX,torproject.org,Proxy
+- DOMAIN-SUFFIX,tumblr.com,Proxy
+- DOMAIN-SUFFIX,turbobit.net,Proxy
+- DOMAIN-SUFFIX,twitch.tv,Proxy
+- DOMAIN-SUFFIX,udn.com,Proxy
+- DOMAIN-SUFFIX,unseen.is,Proxy
+- DOMAIN-SUFFIX,upmedia.mg,Proxy
+- DOMAIN-SUFFIX,uptodown.com,Proxy
+- DOMAIN-SUFFIX,ustream.tv,Proxy
+- DOMAIN-SUFFIX,uwants.com,Proxy
+- DOMAIN-SUFFIX,v2ray.com,Proxy
+- DOMAIN-SUFFIX,viber.com,Proxy
+- DOMAIN-SUFFIX,videopress.com,Proxy
+- DOMAIN-SUFFIX,vimeo.com,Proxy
+- DOMAIN-SUFFIX,voxer.com,Proxy
+- DOMAIN-SUFFIX,vzw.com,Proxy
+- DOMAIN-SUFFIX,w3schools.com,Proxy
+- DOMAIN-SUFFIX,wattpad.com,Proxy
+- DOMAIN-SUFFIX,whoer.net,Proxy
+- DOMAIN-SUFFIX,wikimapia.org,Proxy
+- DOMAIN-SUFFIX,wikipedia.org,Proxy
+- DOMAIN-SUFFIX,wire.com,Proxy
+- DOMAIN-SUFFIX,worldcat.org,Proxy
+- DOMAIN-SUFFIX,wsj.com,Proxy
+- DOMAIN-SUFFIX,wsj.net,Proxy
+- DOMAIN-SUFFIX,xboxlive.com,Proxy
+- DOMAIN-SUFFIX,xvideos.com,Proxy
+- DOMAIN-SUFFIX,yahoo.com,Proxy
+- DOMAIN-SUFFIX,yesasia.com,Proxy
+- DOMAIN-SUFFIX,yes-news.com,Proxy
+- DOMAIN-SUFFIX,yomiuri.co.jp,Proxy
+- DOMAIN-SUFFIX,you-get.org,Proxy
+- DOMAIN-SUFFIX,zb.com,Proxy
+- DOMAIN-SUFFIX,zello.com,Proxy
+- DOMAIN-SUFFIX,zeronet.io,Proxy
+- DOMAIN,cdn-images.mailchimp.com,Proxy
+- DOMAIN,id.heroku.com,Proxy
+- DOMAIN-KEYWORD,github,Proxy
+- DOMAIN-KEYWORD,jav,Proxy
+- DOMAIN-KEYWORD,pinterest,Proxy
+- DOMAIN-KEYWORD,porn,Proxy
+- DOMAIN-KEYWORD,wikileaks,Proxy
+
+# (Region-Restricted Access Denied)
+- DOMAIN-SUFFIX,apartmentratings.com,Proxy
+- DOMAIN-SUFFIX,apartments.com,Proxy
+- DOMAIN-SUFFIX,bankmobilevibe.com,Proxy
+- DOMAIN-SUFFIX,bing.com,Proxy
+- DOMAIN-SUFFIX,booktopia.com.au,Proxy
+- DOMAIN-SUFFIX,centauro.com.br,Proxy
+- DOMAIN-SUFFIX,clearsurance.com,Proxy
+- DOMAIN-SUFFIX,costco.com,Proxy
+- DOMAIN-SUFFIX,crackle.com,Proxy
+- DOMAIN-SUFFIX,depositphotos.cn,Proxy
+- DOMAIN-SUFFIX,dish.com,Proxy
+- DOMAIN-SUFFIX,dmm.co.jp,Proxy
+- DOMAIN-SUFFIX,dmm.com,Proxy
+- DOMAIN-SUFFIX,dnvod.tv,Proxy
+- DOMAIN-SUFFIX,esurance.com,Proxy
+- DOMAIN-SUFFIX,extmatrix.com,Proxy
+- DOMAIN-SUFFIX,fastpic.ru,Proxy
+- DOMAIN-SUFFIX,flipboard.com,Proxy
+- DOMAIN-SUFFIX,fnac.be,Proxy
+- DOMAIN-SUFFIX,fnac.com,Proxy
+- DOMAIN-SUFFIX,funkyimg.com,Proxy
+- DOMAIN-SUFFIX,fxnetworks.com,Proxy
+- DOMAIN-SUFFIX,gettyimages.com,Proxy
+- DOMAIN-SUFFIX,jcpenney.com,Proxy
+- DOMAIN-SUFFIX,kknews.cc,Proxy
+- DOMAIN-SUFFIX,nationwide.com,Proxy
+- DOMAIN-SUFFIX,nbc.com,Proxy
+- DOMAIN-SUFFIX,nordstrom.com,Proxy
+- DOMAIN-SUFFIX,nordstromimage.com,Proxy
+- DOMAIN-SUFFIX,nordstromrack.com,Proxy
+- DOMAIN-SUFFIX,read01.com,Proxy
+- DOMAIN-SUFFIX,superpages.com,Proxy
+- DOMAIN-SUFFIX,target.com,Proxy
+- DOMAIN-SUFFIX,thinkgeek.com,Proxy
+- DOMAIN-SUFFIX,tracfone.com,Proxy
+- DOMAIN-SUFFIX,uploader.jp,Proxy
+- DOMAIN-SUFFIX,vevo.com,Proxy
+- DOMAIN-SUFFIX,viu.tv,Proxy
+- DOMAIN-SUFFIX,vk.com,Proxy
+- DOMAIN-SUFFIX,vsco.co,Proxy
+- DOMAIN-SUFFIX,xfinity.com,Proxy
+- DOMAIN-SUFFIX,zattoo.com,Proxy
+- DOMAIN,abc.com,Proxy
+- DOMAIN,abc.go.com,Proxy
+- DOMAIN,abc.net.au,Proxy
+- DOMAIN,wego.here.com,Proxy
+#USER-AGENT,Roam*,Proxy
+
+# (The Most Popular Sites)
+# > Apple
+# > Apple URL Shortener
+- DOMAIN-SUFFIX,appsto.re,Proxy
+# > TestFlight
+- DOMAIN,beta.itunes.apple.com,Proxy
+# > iBooks Store download
+- DOMAIN,books.itunes.apple.com,Proxy
+# > iTunes Store Moveis Trailers
+- DOMAIN,hls.itunes.apple.com,Proxy
+# App Store Preview
+- DOMAIN,itunes.apple.com,Proxy
+# > Spotlight
+- DOMAIN,api-glb-sea.smoot.apple.com,Proxy
+# > Dictionary
+- DOMAIN,lookup-api.apple.com,Proxy
+#PROCESS-NAME,LookupViewService,Proxy
+# > Google
+- DOMAIN-SUFFIX,abc.xyz,Proxy
+- DOMAIN-SUFFIX,android.com,Proxy
+- DOMAIN-SUFFIX,androidify.com,Proxy
+- DOMAIN-SUFFIX,dialogflow.com,Proxy
+- DOMAIN-SUFFIX,autodraw.com,Proxy
+- DOMAIN-SUFFIX,capitalg.com,Proxy
+- DOMAIN-SUFFIX,certificate-transparency.org,Proxy
+- DOMAIN-SUFFIX,chrome.com,Proxy
+- DOMAIN-SUFFIX,chromeexperiments.com,Proxy
+- DOMAIN-SUFFIX,chromestatus.com,Proxy
+- DOMAIN-SUFFIX,chromium.org,Proxy
+- DOMAIN-SUFFIX,creativelab5.com,Proxy
+- DOMAIN-SUFFIX,debug.com,Proxy
+- DOMAIN-SUFFIX,deepmind.com,Proxy
+- DOMAIN-SUFFIX,firebaseio.com,Proxy
+- DOMAIN-SUFFIX,getmdl.io,Proxy
+- DOMAIN-SUFFIX,ggpht.com,Proxy
+- DOMAIN-SUFFIX,gmail.com,Proxy
+- DOMAIN-SUFFIX,gmodules.com,Proxy
+- DOMAIN-SUFFIX,godoc.org,Proxy
+- DOMAIN-SUFFIX,golang.org,Proxy
+- DOMAIN-SUFFIX,gstatic.com,Proxy
+- DOMAIN-SUFFIX,gv.com,Proxy
+- DOMAIN-SUFFIX,gwtproject.org,Proxy
+- DOMAIN-SUFFIX,itasoftware.com,Proxy
+- DOMAIN-SUFFIX,madewithcode.com,Proxy
+- DOMAIN-SUFFIX,material.io,Proxy
+- DOMAIN-SUFFIX,polymer-project.org,Proxy
+- DOMAIN-SUFFIX,admin.recaptcha.net,Proxy
+- DOMAIN-SUFFIX,recaptcha.net,Proxy
+- DOMAIN-SUFFIX,shattered.io,Proxy
+- DOMAIN-SUFFIX,synergyse.com,Proxy
+- DOMAIN-SUFFIX,tensorflow.org,Proxy
+- DOMAIN-SUFFIX,tiltbrush.com,Proxy
+- DOMAIN-SUFFIX,waveprotocol.org,Proxy
+- DOMAIN-SUFFIX,waymo.com,Proxy
+- DOMAIN-SUFFIX,webmproject.org,Proxy
+- DOMAIN-SUFFIX,webrtc.org,Proxy
+- DOMAIN-SUFFIX,whatbrowser.org,Proxy
+- DOMAIN-SUFFIX,widevine.com,Proxy
+- DOMAIN-SUFFIX,x.company,Proxy
+- DOMAIN-SUFFIX,youtu.be,Proxy
+- DOMAIN-SUFFIX,yt.be,Proxy
+- DOMAIN-SUFFIX,ytimg.com,Proxy
+# > Steam
+- DOMAIN,media.steampowered.com,Proxy
+- DOMAIN,store.steampowered.com,Proxy
+# > Other
+- DOMAIN-SUFFIX,0rz.tw,Proxy
+- DOMAIN-SUFFIX,4bluestones.biz,Proxy
+- DOMAIN-SUFFIX,9bis.net,Proxy
+- DOMAIN-SUFFIX,allconnected.co,Proxy
+- DOMAIN-SUFFIX,amazonaws.com,Proxy
+- DOMAIN-SUFFIX,aol.com,Proxy
+- DOMAIN-SUFFIX,bcc.com.tw,Proxy
+- DOMAIN-SUFFIX,bit.ly,Proxy
+- DOMAIN-SUFFIX,bitshare.com,Proxy
+- DOMAIN-SUFFIX,blog.jp,Proxy
+- DOMAIN-SUFFIX,blogimg.jp,Proxy
+- DOMAIN-SUFFIX,blogtd.org,Proxy
+- DOMAIN-SUFFIX,broadcast.co.nz,Proxy
+- DOMAIN-SUFFIX,camfrog.com,Proxy
+- DOMAIN-SUFFIX,cfos.de,Proxy
+- DOMAIN-SUFFIX,citypopulation.de,Proxy
+- DOMAIN-SUFFIX,cloudfront.net,Proxy
+- DOMAIN-SUFFIX,ctitv.com.tw,Proxy
+- DOMAIN-SUFFIX,cuhk.edu.hk,Proxy
+- DOMAIN-SUFFIX,cusu.hk,Proxy
+- DOMAIN-SUFFIX,discuss.com.hk,Proxy
+- DOMAIN-SUFFIX,dropboxapi.com,Proxy
+- DOMAIN-SUFFIX,edditstatic.com,Proxy
+- DOMAIN-SUFFIX,flickriver.com,Proxy
+- DOMAIN-SUFFIX,focustaiwan.tw,Proxy
+- DOMAIN-SUFFIX,free.fr,Proxy
+- DOMAIN-SUFFIX,ftchinese.com,Proxy
+- DOMAIN-SUFFIX,gigacircle.com,Proxy
+- DOMAIN-SUFFIX,gov,Proxy
+- DOMAIN-SUFFIX,hk-pub.com,Proxy
+- DOMAIN-SUFFIX,hosting.co.uk,Proxy
+- DOMAIN-SUFFIX,hwcdn.net,Proxy
+- DOMAIN-SUFFIX,jtvnw.net,Proxy
+- DOMAIN-SUFFIX,linksalpha.com,Proxy
+- DOMAIN-SUFFIX,manyvids.com,Proxy
+- DOMAIN-SUFFIX,myactimes.com,Proxy
+- DOMAIN-SUFFIX,newsblur.com,Proxy
+- DOMAIN-SUFFIX,now.im,Proxy
+- DOMAIN-SUFFIX,redditlist.com,Proxy
+- DOMAIN-SUFFIX,signal.org,Proxy
+- DOMAIN-SUFFIX,sparknotes.com,Proxy
+- DOMAIN-SUFFIX,streetvoice.com,Proxy
+- DOMAIN-SUFFIX,ttvnw.net,Proxy
+- DOMAIN-SUFFIX,tv.com,Proxy
+- DOMAIN-SUFFIX,twitchcdn.net,Proxy
+- DOMAIN-SUFFIX,typepad.com,Proxy
+- DOMAIN-SUFFIX,udnbkk.com,Proxy
+- DOMAIN-SUFFIX,whispersystems.org,Proxy
+- DOMAIN-SUFFIX,wikia.com,Proxy
+- DOMAIN-SUFFIX,wn.com,Proxy
+- DOMAIN-SUFFIX,wolframalpha.com,Proxy
+- DOMAIN-SUFFIX,x-art.com,Proxy
+- DOMAIN-SUFFIX,yimg.com,Proxy
+
+- DOMAIN-KEYWORD,dlercloud,Proxy
+- DOMAIN-SUFFIX,dler.cloud,Proxy
+
+# Local Area Network
+- DOMAIN-KEYWORD,announce,DIRECT
+- DOMAIN-KEYWORD,torrent,DIRECT
+- DOMAIN-KEYWORD,tracker,DIRECT
+- DOMAIN-SUFFIX,smtp,DIRECT
+- DOMAIN-SUFFIX,local,DIRECT
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,127.0.0.0/8,DIRECT
+- IP-CIDR,100.64.0.0/10,DIRECT
+
+# > IQIYI
+- IP-CIDR,101.227.0.0/16,AsianTV
+- IP-CIDR,101.224.0.0/13,AsianTV
+- IP-CIDR,119.176.0.0/12,AsianTV
+
+# > Youku
+- IP-CIDR,106.11.0.0/16,AsianTV
+
+# > Telegram
+- IP-CIDR,67.198.55.0/24,Proxy
+- IP-CIDR,91.108.4.0/22,Proxy
+- IP-CIDR,91.108.8.0/22,Proxy
+- IP-CIDR,91.108.12.0/22,Proxy
+- IP-CIDR,91.108.16.0/22,Proxy
+- IP-CIDR,91.108.56.0/22,Proxy
+- IP-CIDR,109.239.140.0/24,Proxy
+- IP-CIDR,149.154.160.0/20,Proxy
+- IP-CIDR,205.172.60.0/22,Proxy
+
+# (Extra IP-CIRD)
+# > Google
+- IP-CIDR,35.190.247.0/24,Proxy
+- IP-CIDR,64.233.160.0/19,Proxy
+- IP-CIDR,66.102.0.0/20,Proxy
+- IP-CIDR,66.249.80.0/20,Proxy
+- IP-CIDR,72.14.192.0/18,Proxy
+- IP-CIDR,74.125.0.0/16,Proxy
+- IP-CIDR,108.177.8.0/21,Proxy
+- IP-CIDR,172.217.0.0/16,Proxy
+- IP-CIDR,173.194.0.0/16,Proxy
+- IP-CIDR,209.85.128.0/17,Proxy
+- IP-CIDR,216.58.192.0/19,Proxy
+- IP-CIDR,216.239.32.0/19,Proxy
+# > Facebook
+- IP-CIDR,31.13.24.0/21,Proxy
+- IP-CIDR,31.13.64.0/18,Proxy
+- IP-CIDR,45.64.40.0/22,Proxy
+- IP-CIDR,66.220.144.0/20,Proxy
+- IP-CIDR,69.63.176.0/20,Proxy
+- IP-CIDR,69.171.224.0/19,Proxy
+- IP-CIDR,74.119.76.0/22,Proxy
+- IP-CIDR,103.4.96.0/22,Proxy
+- IP-CIDR,129.134.0.0/17,Proxy
+- IP-CIDR,157.240.0.0/17,Proxy
+- IP-CIDR,173.252.64.0/19,Proxy
+- IP-CIDR,173.252.96.0/19,Proxy
+- IP-CIDR,179.60.192.0/22,Proxy
+- IP-CIDR,185.60.216.0/22,Proxy
+- IP-CIDR,204.15.20.0/22,Proxy
+# > Twitter
+- IP-CIDR,69.195.160.0/19,Proxy
+- IP-CIDR,104.244.42.0/21,Proxy
+- IP-CIDR,192.133.76.0/22,Proxy
+- IP-CIDR,199.16.156.0/22,Proxy
+- IP-CIDR,199.59.148.0/22,Proxy
+- IP-CIDR,199.96.56.0/21,Proxy
+- IP-CIDR,202.160.128.0/22,Proxy
+- IP-CIDR,209.237.192.0/19,Proxy
+
+# GeoIP China
+- GEOIP,CN,Domestic
+
+- MATCH,Others
