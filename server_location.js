@@ -14,7 +14,7 @@ function city_check(para) {
   return para || city0;
 }
 
-function isp_check(para) {
+function org_check(para) {
   return para || org0;
 }
 
