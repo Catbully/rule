@@ -51,16 +51,16 @@ const country = convertToSimplifiedChinese(city_check(obj['country']));
 const city = convertToSimplifiedChinese(city_check(obj['city']));
 
 // 展示在顶部开关左边（第1行） 格式：国旗 国家名 地区名
-var title = flags.get(obj['countryCode']) + ' ' + obj['country'];
+var title = flags.get(obj['country_code']) + ' ' + obj['country_name'];
 // 展示在顶部开关左边（第2行）
-var subtitle = obj['query'] + ' ' + isp_check(obj['isp']);
+var subtitle = obj['ip'] + ' ' + isp_check(obj['org']);
 // 不展示
-var ip = obj['query'];
+var ip = obj['ip'];
 // 长按节点选择“查看节点信息”时的信息
-var description = '国家：' + obj['countryCode'] + ' ' + obj['country'] + '\n'
-  + '地区：' + obj['region'] + ' ' + city_check(obj['regionName']) + '\n'
-  + 'IP：' + obj['query'] + '\n'
-  + '服务商：' + obj['isp'] + '\n'
-  + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
+var description = '国家：' + obj['country_code'] + ' ' + obj['country'] + '\n'
+  + '地区：' + obj['region'] + ' ' + city_check(obj['city']) + '\n'
+  + 'IP：' + obj['ip'] + '\n'
+  + '服务商：' + obj['org'] + '\n'
+  + '经纬度：' + obj['latitude'] + ' / ' + obj['longitude'] + '\n'
   + '时区：' + obj['timezone'];
 $done({title, subtitle, ip, description});
