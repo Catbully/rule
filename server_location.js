@@ -22,8 +22,8 @@ function area_check(para) {
   return para === "中华民国" ? "台湾" : para;
 }
 
-function append(country_name, city) {
-  return country_name === city ? country_name : country_name + ' ' + city;
+function append(country, city) {
+  return country === city ? country : country + ' ' + city;
 }
 
 // 一个简单的函数来实现将繁体中文转换为简体中文
@@ -47,20 +47,20 @@ function convertToSimplifiedChinese(text) {
 var body = $response.body;
 var obj = JSON.parse(body);
 
-const country_name = convertToSimplifiedChinese(city_check(obj['country_name']));
+const country = convertToSimplifiedChinese(city_check(obj['country']));
 const city = convertToSimplifiedChinese(city_check(obj['city']));
 
 // 展示在顶部开关左边（第1行） 格式：国旗 国家名 地区名
 var title = flags.get(obj['countryCode']);
 // 展示在顶部开关左边（第2行）
-var subtitle = obj['ip'] + ' ' + isp_check(obj['org']);
+var subtitle = obj['query'] + ' ' + isp_check(obj['as']);
 // 不展示
-var ip = obj['ip'];
+var ip = obj['query'];
 // 长按节点选择“查看节点信息”时的信息
-var description = '国家：' + obj['countryCode'] + ' ' + obj['country_name'] + '\n'
+var description = '国家：' + obj['countryCode'] + ' ' + obj['country'] + '\n'
   + '地区：' + obj['region'] + ' ' + city_check(obj['regionName']) + '\n'
-  + 'IP：' + obj['ip'] + '\n'
-  + '服务商：' + obj['org'] + '\n'
-  + '经纬度：' + obj['latitude'] + ' / ' + obj['longitude'] + '\n'
+  + 'IP：' + obj['query'] + '\n'
+  + '服务商：' + obj['isp'] + '\n'
+  + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
   + '时区：' + obj['timezone'];
 $done({title, subtitle, ip, description});
