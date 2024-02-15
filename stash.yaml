@@ -1,14 +1,14 @@
 proxy-providers:
   KLM:
     interval: 86400
-    url: https://kuromisubs.shop/oaZh-GvR3r31liseFjdP-?type=clash&protocol=trojan&rule=default
+    url: 
   V2Tun:
     interval: 86400
-    url: https://api.v2tun-163cdn.top/sub?target=clash&filename=V2Tun&new_name=true&scv=true&tfo=true&clash.doh=true&emoji=true&udp=true&url=https%3A%2F%2Fapi.v2tun.li%2Fosubscribe.php%3Fsid%3D13835%26token%3D4bfVgzvjiKgD
+    url: o
 proxy-groups:
   # 功能分组
   - name: Choose
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png
+    icon: 
     type: select
     proxies:
       - 自动选择
