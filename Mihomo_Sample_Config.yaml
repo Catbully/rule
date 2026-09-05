@@ -187,6 +187,6 @@ rules:
   - RULE-SET, Direct_ip, DIRECT
   - RULE-SET, Proxy, 兜底后备策略
   - RULE-SET, AI_non_ip, AI
-  - RULE-SET, AI_IP, AI
+  - RULE-SET, AI_ip, AI
   - GEOIP, CN, DIRECT
   - MATCH, 兜底后备策略
