@@ -181,9 +181,12 @@ rule-providers:
 
 # 规则指向
 rules:
-  - RULE-SET, LAN, DIRECT
-  - RULE-SET, Direct, DIRECT
+  - RULE-SET, LAN_non_ip, DIRECT
+  - RULE-SET,  Lan_ip, DIRECT
+  - RULE-SET, Direct_non_ip, DIRECT
+  - RULE-SET, Direct_ip, DIRECT
   - RULE-SET, Proxy, 兜底后备策略
-  - RULE-SET, AI, AI
+  - RULE-SET, AI_non_ip, AI
+  - RULE-SET, AI_IP, AI
   - GEOIP, CN, DIRECT
   - MATCH, 兜底后备策略
